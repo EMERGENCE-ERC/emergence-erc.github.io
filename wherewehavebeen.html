@@ -16,7 +16,7 @@
         #map { height: 680px; border-radius: 12px; }
         
         .event-list {
-            max-height: 680px;
+            max-height: 520px;
             overflow-y: auto;
             font-size: 0.85rem;
         }
@@ -91,12 +91,19 @@
                             <div class="legend-item"><span class="legend-dot" style="background:#ffd700"></span> Keynote</div>
                             <div class="legend-item"><span class="legend-dot" style="background:#00b4d8"></span> Invited Lecture</div>
                             <div class="legend-item"><span class="legend-dot" style="background:#28a745"></span> Conference Presentation</div>
-                            <div class="legend-item"><span class="legend-dot" style="background:#ff7f0e"></span> Conference Roundtable</div>
+                            <div class="legend-item"><span class="legend-dot" style="background:#ff7f0e"></span> Roundtable</div>
                         </div>
                     </div>
                 </div>
                 
                 <div class="col-lg-4">
+                    <h5 class="mb-3">Filters</h5>
+                    <div class="bg-dark p-3 rounded mb-3">
+                        <strong>Type:</strong><br>
+                        <div id="typeFilters" class="mb-3"></div>
+                        <input type="text" id="searchBox" class="form-control" placeholder="Search title or speaker...">
+                    </div>
+                    
                     <h5 class="mb-3">All Presentations</h5>
                     <div class="event-list bg-dark p-3 rounded" id="eventList"></div>
                 </div>
@@ -113,7 +120,8 @@
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
         const markers = L.markerClusterGroup();
-        const eventsData = [];
+        let allMarkers = [];
+        let eventsData = [];
 
         Papa.parse('assets/data/presentations.csv', {
             download: true,
@@ -140,11 +148,13 @@
                     `);
 
                     markers.addLayer(marker);
+                    allMarkers.push(marker);
                     eventsData.push({row, marker, index});
                 });
 
                 map.addLayer(markers);
                 renderEventList();
+                renderTypeFilters();
             }
         });
 
@@ -158,9 +168,47 @@
             }
         }
 
+        function renderTypeFilters() {
+            const types = [...new Set(eventsData.map(e => e.row.Type))];
+            const container = document.getElementById('typeFilters');
+            container.innerHTML = types.map(type => `
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input type-filter" type="checkbox" value="${type}" checked>
+                    <label class="form-check-label">${type}</label>
+                </div>
+            `).join('');
+            
+            document.querySelectorAll('.type-filter').forEach(cb => {
+                cb.addEventListener('change', filterMap);
+            });
+            document.getElementById('searchBox').addEventListener('input', filterMap);
+        }
+
+        function filterMap() {
+            const selectedTypes = Array.from(document.querySelectorAll('.type-filter:checked')).map(cb => cb.value);
+            const searchTerm = document.getElementById('searchBox').value.toLowerCase();
+
+            markers.clearLayers();
+
+            eventsData.forEach(item => {
+                const matchesType = selectedTypes.includes(item.row.Type);
+                const matchesSearch = !searchTerm || 
+                    (item.row['Paper title'] && item.row['Paper title'].toLowerCase().includes(searchTerm)) ||
+                    (item.row.Speaker && item.row.Speaker.toLowerCase().includes(searchTerm));
+
+                if (matchesType && matchesSearch) {
+                    markers.addLayer(item.marker);
+                }
+            });
+
+            renderEventList();
+        }
+
         function renderEventList() {
             const container = document.getElementById('eventList');
-            container.innerHTML = eventsData.map(item => `
+            const filtered = eventsData.filter(item => markers.hasLayer(item.marker));
+            
+            container.innerHTML = filtered.map(item => `
                 <div class="event-item rounded mb-2" onclick="zoomToEvent(${item.index})">
                     <div class="event-title">${item.row['Paper title'] || item.row['Event title']}</div>
                     <small class="text-info">${item.row.Speaker} • ${item.row.Date} • ${item.row.Type}</small><br>
