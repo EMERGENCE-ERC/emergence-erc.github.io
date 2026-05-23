@@ -1,5 +1,35 @@
-/* Place holder thingy */
 body {
     background-color: #000000;
     color: #ffffff;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+.navbar {
+    background-color: #000000 !important;
+    border-bottom: 1px solid #333333;
+}
+
+.logo {
+    max-height: 65px;
+    width: auto;
+}
+
+.hero {
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), 
+                url('https://picsum.photos/id/1015/2000/1200') center/cover no-repeat;
+    margin-top: 70px;
+}
+
+.nav-link {
+    color: #ffffff !important;
+    font-weight: 500;
+}
+
+.nav-link:hover {
+    color: #00d4ff !important;
+}
+
+.btn-outline-light:hover {
+    background-color: #ffffff;
+    color: #000000;
 }
