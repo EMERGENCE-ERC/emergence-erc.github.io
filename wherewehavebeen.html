@@ -18,7 +18,7 @@
         .event-list {
             max-height: 680px;
             overflow-y: auto;
-            font-size: 0.84rem;           /* Even smaller font */
+            font-size: 0.84rem;
         }
         .event-item {
             cursor: pointer;
@@ -110,8 +110,7 @@
                     }).bindPopup(`
                         <strong>${row['Paper title'] || row['Event title']}</strong><br>
                         ${row.Speaker}<br>
-                        <small>${row['Event title']} • ${row.Date}</small><br>
-                        <small>📍 ${row.Location}</small>
+                        <small>${row['Event title']} • ${row.Date}</small>
                     `);
 
                     markers.addLayer(marker);
@@ -139,7 +138,7 @@
                 <div class="event-item rounded mb-2" onclick="zoomToEvent(${item.index})">
                     <strong>${item.row['Paper title'] || item.row['Event title']}</strong><br>
                     <small>${item.row.Speaker} • ${item.row.Date}</small><br>
-                    <small class="text-info">${item.row.Location}</small>
+                    <small class="text-info">${item.row['Event title']}</small>
                 </div>
             `).join('');
         }
