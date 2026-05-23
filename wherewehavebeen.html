@@ -18,18 +18,18 @@
         .event-list {
             max-height: 680px;
             overflow-y: auto;
-            font-size: 0.84rem;
+            font-size: 0.85rem;
         }
         .event-item {
             cursor: pointer;
             transition: all 0.2s;
-            padding: 10px 14px;
+            padding: 11px 14px;
         }
         .event-item:hover {
             background-color: #1a1a1a;
         }
-        .event-item strong {
-            font-size: 0.97rem;
+        .event-title {
+            font-size: 0.96rem;
             line-height: 1.25;
         }
     </style>
@@ -110,6 +110,7 @@
                     }).bindPopup(`
                         <strong>${row['Paper title'] || row['Event title']}</strong><br>
                         ${row.Speaker}<br>
+                        <em>${row.Type}</em><br>
                         <small>${row['Event title']} • ${row.Date}</small>
                     `);
 
@@ -136,9 +137,9 @@
             const container = document.getElementById('eventList');
             container.innerHTML = eventsData.map(item => `
                 <div class="event-item rounded mb-2" onclick="zoomToEvent(${item.index})">
-                    <strong>${item.row['Paper title'] || item.row['Event title']}</strong><br>
-                    <small>${item.row.Speaker} • ${item.row.Date}</small><br>
-                    <small class="text-info">${item.row['Event title']}</small>
+                    <div class="event-title">${item.row['Paper title'] || item.row['Event title']}</div>
+                    <small>${item.row.Speaker} • ${item.row.Date} • <span class="text-info">${item.row.Type}</span></small><br>
+                    <small class="text-light">${item.row['Event title']}</small>
                 </div>
             `).join('');
         }
