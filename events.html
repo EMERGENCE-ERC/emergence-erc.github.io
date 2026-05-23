@@ -15,7 +15,7 @@
         .event-tile {
             position: relative;
             width: 100%;
-            padding-top: 100%; /* Square */
+            padding-top: 100%;
             overflow: hidden;
             border-radius: 12px;
             cursor: pointer;
@@ -35,12 +35,18 @@
             transition: filter 0.4s ease;
         }
 
-        /* Past events: grayscale by default */
+        /* Past events: grayscale + reversed text colors */
         .event-tile.past img {
             filter: grayscale(85%);
         }
         .event-tile.past:hover img {
             filter: grayscale(0%);
+        }
+        .event-tile.past .event-overlay h5 {
+            color: #00b4d8;           /* Blue title for past events */
+        }
+        .event-tile.past .event-overlay p {
+            color: #e0e0e0;           /* Light white for subtitle */
         }
 
         .event-overlay {
@@ -94,54 +100,51 @@
         <div class="container">
             <div class="row g-4 justify-content-center">
 
-                <!-- Upcoming: Leeds IMC 2026 -->
+                <!-- Upcoming -->
                 <div class="col-md-4 col-sm-6">
                     <a href="#" target="_blank" class="text-decoration-none">
                         <div class="event-tile bg-dark">
-                            <img src="https://picsum.photos/id/870/800/800" alt="Leeds IMC 2026">
+                            <img src="https://www.imc.leeds.ac.uk/wp-content/uploads/sites/28/2025/06/PM23-44580-IMC-Postcard-2026-Medium.jpg" alt="Leeds IMC 2026">
                             <div class="event-overlay">
-                                <h5 class="mb-1">Leeds IMC 2026</h5>
-                                <p class="mb-0 text-info">July 2026 • International Medieval Congress</p>
+                                <h5 class="mb-1">Sessions on "Old English Studies in the Long Nineteenth Century" at International Medieval Congress 2026</h5>
+                                <p class="mb-0 text-info">6-9 July 2026 | Leeds</p>
                             </div>
                         </div>
                     </a>
                 </div>
 
                 <!-- Past Events -->
-                <!-- Joseph Bosworth -->
                 <div class="col-md-4 col-sm-6">
                     <a href="#" target="_blank" class="text-decoration-none">
                         <div class="event-tile past bg-dark">
                             <img src="https://picsum.photos/id/870/800/800" alt="Joseph Bosworth">
                             <div class="event-overlay">
-                                <h5 class="mb-1">Joseph Bosworth & Old English Studies</h5>
-                                <p class="mb-0 text-info">21 May 2025 | Online</p>
+                                <h5 class="mb-1">Joseph Bosworth & Old English Studies: Then, Now and the Future</h5>
+                                <p class="mb-0">21 May 2025 | Online</p>
                             </div>
                         </div>
                     </a>
                 </div>
 
-                <!-- Leeds IMC 2025 -->
                 <div class="col-md-4 col-sm-6">
                     <a href="#" target="_blank" class="text-decoration-none">
                         <div class="event-tile past bg-dark">
-                            <img src="https://picsum.photos/id/1015/800/800" alt="Leeds IMC 2025">
+                            <img src="https://www.imc.leeds.ac.uk/wp-content/uploads/sites/28/2024/04/imc-postcard-new-700x394.jpg" alt="Leeds IMC 2025">
                             <div class="event-overlay">
-                                <h5 class="mb-1">Leeds IMC 2025</h5>
-                                <p class="mb-0 text-info">July 2025 • International Medieval Congress</p>
+                                <h5 class="mb-1">Sessions on "Old English Studies in the Long Nineteenth Century" at International Medieval Congress 2025</h5>
+                                <p class="mb-0">7-10 July 2025 | Leeds</p>
                             </div>
                         </div>
                     </a>
                 </div>
 
-                <!-- Ælfric's Afterlives -->
                 <div class="col-md-4 col-sm-6">
                     <a href="#" target="_blank" class="text-decoration-none">
                         <div class="event-tile past bg-dark">
-                            <img src="https://www.universiteitleiden.nl/binaries/content/gallery/ul2/unsorted/afterlives-logooooo.jpg" alt="Ælfric's Afterlives">
+                            <img src="https://picsum.photos/id/201/800/800" alt="Ælfric's Afterlives">
                             <div class="event-overlay">
                                 <h5 class="mb-1">Ælfric's Afterlives: Copying, Editing, Studying, Teaching and Remembering the Most Prolific Author of Old English</h5>
-                                <p class="mb-0 text-info">26-27 June, 2025 | Leiden</p>
+                                <p class="mb-0">Symposium • 26-27 June 2025 | Leiden</p>
                             </div>
                         </div>
                     </a>
