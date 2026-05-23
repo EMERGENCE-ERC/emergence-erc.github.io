@@ -14,16 +14,26 @@
     
     <style>
         #map { height: 680px; border-radius: 12px; }
+        
         .event-list {
             max-height: 680px;
             overflow-y: auto;
+            font-size: 0.95rem;           /* Smaller overall font */
         }
         .event-item {
             cursor: pointer;
             transition: all 0.2s;
+            padding: 12px 14px;
         }
         .event-item:hover {
             background-color: #1a1a1a;
+        }
+        .event-item strong {
+            font-size: 1.05rem;
+            line-height: 1.3;
+        }
+        .event-item small {
+            font-size: 0.9rem;
         }
     </style>
 </head>
@@ -54,7 +64,7 @@
     <section class="py-5" style="background-color: #0a0a0a; margin-top: 70px;">
         <div class="container text-center">
             <h1 class="display-4 fw-bold">Where Have We Been?</h1>
-            <p class="lead text-light">Our conference presentations and academic activities</p>
+            <p class="lead text-light">Conference presentations and academic activities of the EMERGENCE ERC team</p>
         </div>
     </section>
 
@@ -66,12 +76,10 @@
                     <div id="map"></div>
                 </div>
                 
-                <!-- Event List -->
+                <!-- Narrower Event List -->
                 <div class="col-lg-5">
                     <h5 class="mb-3">All Presentations</h5>
-                    <div class="event-list bg-dark p-3 rounded" id="eventList">
-                        <!-- Populated by JavaScript -->
-                    </div>
+                    <div class="event-list bg-dark p-3 rounded" id="eventList"></div>
                 </div>
             </div>
         </div>
@@ -112,8 +120,6 @@
                 });
 
                 map.addLayer(markers);
-
-                // Render list
                 renderEventList();
             }
         });
@@ -131,7 +137,7 @@
         function renderEventList() {
             const container = document.getElementById('eventList');
             container.innerHTML = eventsData.map(item => `
-                <div class="event-item p-3 mb-2 rounded" onclick="zoomToEvent(${item.index})">
+                <div class="event-item rounded mb-2 p-3" onclick="zoomToEvent(${item.index})">
                     <strong>${item.row['Paper title'] || item.row['Event title']}</strong><br>
                     <small>${item.row.Speaker} • ${item.row.Date}</small><br>
                     <small class="text-info">${item.row.Location}</small>
