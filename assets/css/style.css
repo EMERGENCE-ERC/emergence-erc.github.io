@@ -1,7 +1,13 @@
 body {
     background-color: #000000;
     color: #ffffff;
-    font-family: 'Segoe UI', system-ui, sans-serif;
+    font-family: "Bookman Old Style", Georgia, "Times New Roman", serif;
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Bookman Old Style", Georgia, "Times New Roman", serif;
+    font-weight: 700;
 }
 
 .navbar {
@@ -32,4 +38,10 @@ body {
 .btn-outline-light:hover {
     background-color: #ffffff;
     color: #000000;
+}
+
+/* Team page specific */
+.team-overlay h5 {
+    font-family: "Bookman Old Style", Georgia, "Times New Roman", serif;
+    font-size: 1.35rem;
 }
