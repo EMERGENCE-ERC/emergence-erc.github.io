@@ -32,20 +32,6 @@
             font-size: 0.96rem;
             line-height: 1.25;
         }
-        .legend-item {
-            display: inline-flex;
-            align-items: center;
-            margin-right: 20px;
-            font-size: 0.95rem;
-        }
-        .legend-dot {
-            display: inline-block;
-            width: 14px;
-            height: 14px;
-            border-radius: 50%;
-            margin-right: 8px;
-            border: 2px solid #fff;
-        }
     </style>
 </head>
 <body>
@@ -85,7 +71,6 @@
                 <div class="col-lg-8">
                     <div id="map"></div>
                     
-                    <!-- Legend under the map -->
                     <div class="text-center mt-3">
                         <div class="legend d-inline-flex flex-wrap justify-content-center gap-4 bg-dark p-3 rounded">
                             <div class="legend-item"><span class="legend-dot" style="background:#ffd700"></span> Keynote</div>
@@ -101,7 +86,8 @@
                     <div class="bg-dark p-3 rounded mb-3">
                         <strong>Type:</strong><br>
                         <div id="typeFilters" class="mb-3"></div>
-                        <input type="text" id="searchBox" class="form-control" placeholder="Search title or speaker...">
+                        <strong>Speaker:</strong><br>
+                        <div id="speakerFilters"></div>
                     </div>
                     
                     <h5 class="mb-3">All Presentations</h5>
@@ -120,8 +106,7 @@
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
         const markers = L.markerClusterGroup();
-        let allMarkers = [];
-        let eventsData = [];
+        const eventsData = [];
 
         Papa.parse('assets/data/presentations.csv', {
             download: true,
@@ -148,13 +133,12 @@
                     `);
 
                     markers.addLayer(marker);
-                    allMarkers.push(marker);
                     eventsData.push({row, marker, index});
                 });
 
                 map.addLayer(markers);
+                renderFilters();
                 renderEventList();
-                renderTypeFilters();
             }
         });
 
@@ -168,35 +152,34 @@
             }
         }
 
-        function renderTypeFilters() {
+        function renderFilters() {
+            // Type filters
             const types = [...new Set(eventsData.map(e => e.row.Type))];
-            const container = document.getElementById('typeFilters');
-            container.innerHTML = types.map(type => `
+            document.getElementById('typeFilters').innerHTML = types.map(type => `
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input type-filter" type="checkbox" value="${type}" checked>
+                    <input class="form-check-input filter-checkbox" type="checkbox" value="${type}" checked onchange="filterMap()">
                     <label class="form-check-label">${type}</label>
                 </div>
             `).join('');
-            
-            document.querySelectorAll('.type-filter').forEach(cb => {
-                cb.addEventListener('change', filterMap);
-            });
-            document.getElementById('searchBox').addEventListener('input', filterMap);
+
+            // Speaker filters
+            const speakers = [...new Set(eventsData.map(e => e.row.Speaker))];
+            document.getElementById('speakerFilters').innerHTML = speakers.map(speaker => `
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input filter-checkbox" type="checkbox" value="${speaker}" checked onchange="filterMap()">
+                    <label class="form-check-label">${speaker}</label>
+                </div>
+            `).join('');
         }
 
         function filterMap() {
-            const selectedTypes = Array.from(document.querySelectorAll('.type-filter:checked')).map(cb => cb.value);
-            const searchTerm = document.getElementById('searchBox').value.toLowerCase();
+            const selectedTypes = Array.from(document.querySelectorAll('#typeFilters input:checked')).map(cb => cb.value);
+            const selectedSpeakers = Array.from(document.querySelectorAll('#speakerFilters input:checked')).map(cb => cb.value);
 
             markers.clearLayers();
 
             eventsData.forEach(item => {
-                const matchesType = selectedTypes.includes(item.row.Type);
-                const matchesSearch = !searchTerm || 
-                    (item.row['Paper title'] && item.row['Paper title'].toLowerCase().includes(searchTerm)) ||
-                    (item.row.Speaker && item.row.Speaker.toLowerCase().includes(searchTerm));
-
-                if (matchesType && matchesSearch) {
+                if (selectedTypes.includes(item.row.Type) && selectedSpeakers.includes(item.row.Speaker)) {
                     markers.addLayer(item.marker);
                 }
             });
