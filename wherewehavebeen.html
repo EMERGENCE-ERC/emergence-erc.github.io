@@ -65,37 +65,45 @@
         </div>
     </section>
 
-    <!-- Leaflet JS -->
+ <!-- Leaflet JS + MarkerCluster -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 
     <script>
         // Initialize map
-        const map = L.map('map').setView([51.5, 10], 4); // Centered on Europe
+        const map = L.map('map').setView([51.5, 10], 4);
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; OpenStreetMap contributors'
         }).addTo(map);
 
-        // Function to load CSV and add markers
+        // Create marker cluster group
+        const markers = L.markerClusterGroup({
+            showCoverageOnHover: false,
+            maxClusterRadius: 50,
+            spiderfyOnMaxZoom: true
+        });
+
+        // Load CSV and add markers
         function loadPresentations() {
             Papa.parse('assets/data/presentations.csv', {
                 download: true,
                 header: true,
                 complete: function(results) {
                     results.data.forEach(row => {
-                        if (!row.Location || !row.Latitude || !row.Longitude) return;
+                        if (!row.Latitude || !row.Longitude) return;
 
                         const color = getMarkerColor(row.Type);
                         
-                        const marker = L.circleMarker([row.Latitude, row.Longitude], {
-                            radius: 8,
+                        const marker = L.circleMarker([parseFloat(row.Latitude), parseFloat(row.Longitude)], {
+                            radius: 9,
                             fillColor: color,
-                            color: "#fff",
-                            weight: 2,
+                            color: "#ffffff",
+                            weight: 2.5,
                             opacity: 1,
-                            fillOpacity: 0.8
-                        }).addTo(map);
+                            fillOpacity: 0.9
+                        });
 
                         marker.bindPopup(`
                             <strong>${row['Paper title'] || row['Event title']}</strong><br>
@@ -104,17 +112,21 @@
                             <small>${row['Event title']} • ${row.Date}</small><br>
                             📍 ${row.Location}
                         `);
+
+                        markers.addLayer(marker);
                     });
+
+                    map.addLayer(markers);
                 }
             });
         }
 
         function getMarkerColor(type) {
-            switch(type) {
-                case 'Keynote': return '#ffd700';      // Gold
-                case 'Invited lecture': return '#00b4d8'; // Blue
-                case 'Conference presentation': return '#28a745'; // Green
-                case 'Conference roundtable': return '#ff7f0e'; // Orange
+            switch(type?.trim()) {
+                case 'Keynote': return '#ffd700';
+                case 'Invited lecture': return '#00b4d8';
+                case 'Conference presentation': return '#28a745';
+                case 'Conference roundtable': return '#ff7f0e';
                 default: return '#6c757d';
             }
         }
