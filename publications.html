@@ -27,9 +27,10 @@
         }
         .pub-journal {
             color: #f0c14d;
+            font-style: italic;
         }
         .author-line {
-            color: #ffffff;           /* Only changed color to white */
+            color: #ffffff;
         }
     </style>
 </head>
@@ -68,9 +69,7 @@
     <section class="py-5">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-lg-11" id="publicationsList">
-                    <!-- Populated by JavaScript -->
-                </div>
+                <div class="col-lg-11" id="publicationsList"></div>
             </div>
         </div>
     </section>
@@ -91,8 +90,13 @@
                 results.data.forEach(row => {
                     if (!row.Title) return;
 
-                    const linkHTML = row.Link ? 
-                        `<a href="${row.Link}" target="_blank" class="text-info">Open Access</a>` : '';
+                    let linkHTML = '';
+                    if (row.Link) {
+                        const linkText = (row['Open Access'] && row['Open Access'].toLowerCase() === 'yes') 
+                            ? 'Open Access' 
+                            : 'Link';
+                        linkHTML = `<a href="${row.Link}" target="_blank" class="text-info">${linkText}</a>`;
+                    }
 
                     html += `
                         <div class="publication-item">
