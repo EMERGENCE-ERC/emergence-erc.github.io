@@ -5,26 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EMERGENCE Project</title>
     
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- Custom CSS -->
     <link href="assets/css/style.css" rel="stylesheet">
+    
+    <style>
+        .hero {
+            background-color: #000000;
+            padding: 120px 0 100px;
+        }
+        .main-logo {
+            max-height: 180px;
+            width: auto;
+            margin-bottom: 30px;
+        }
+        .section-header {
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+        }
+        .tile {
+            position: relative;
+            padding-top: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .tile:hover {
+            transform: scale(1.05);
+        }
+        .tile img {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+        }
+        .tile-overlay {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+            padding: 20px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-    <!-- Top Navigation Bar -->
+    <!-- Top Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
-            <!-- Logo -->
             <a class="navbar-brand" href="index.html">
                 <img src="https://www.universiteitleiden.nl/binaries/content/gallery/ul2/main-images/humanities/research-projects/emergence-project/emergence-project---logo-horizontal.jpg" 
                      alt="EMERGENCE ERC Logo" class="logo">
             </a>
-            
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
@@ -33,22 +67,101 @@
                     <li class="nav-item"><a class="nav-link" href="events.html">Events</a></li>
                     <li class="nav-item"><a class="nav-link" href="publications.html">Publications</a></li>
                     <li class="nav-item"><a class="nav-link" href="database.html">Database</a></li>
+                    <li class="nav-item"><a class="nav-link" href="wherehavewebeen.html">Where Have We Been?</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero vh-100 d-flex align-items-center">
+    <section class="hero">
         <div class="container text-center">
-            <h1 class="display-3 fw-bold mb-4">EMERGENCE</h1>
+            <h1 class="display-3 fw-bold mb-3">EMERGENCE</h1>
             <p class="lead fs-3 mb-5">Early Medieval English in Nineteenth-Century Europe</p>
+            
+            <!-- Bigger Square Logo -->
             <img src="https://thijsporck.com/wp-content/uploads/2023/11/emergence.logo-met-erc.jpg" 
-                     alt="EMERGENCE ERC Logo" class="logo">
-            <p class="col-lg-8 mx-auto fs-5">
-            In the 19th century, Old English poems were claimed as cultural heritage by various non-Anglophone nations, including Scandinavians, Germans and Dutch. These competing nationalistic, cultural appropriations happened against the backdrop of a growing interest in early medieval English language and literature across the European continent. Exploring this transnational reception of Old English offers a new perspective on the 19th-century foundations of Old English Studies. The EMERGENCE project is funded by a European Research Council (ERC) Starting Grant of €1.5 million to Thijs Porck for 5 years from 2024 (<a href="https://doi.org/10.3030/101115867" target="_blank">Grant . No. 101115867</a>). The project is hosted by the Leiden University Centre for the Arts in Society, the Netherlands.
-            </p>
-            <a href="https://www.universiteitleiden.nl/en/research/research-projects/humanities/emergence" target="_blank" class="btn btn-outline-light btn-lg mt-4">Learn more about the project on the Leiden University website</a>
+                 alt="EMERGENCE ERC Logo" class="main-logo">
+            
+            <div class="col-lg-10 mx-auto">
+                <p class="fs-5">
+                    In the 19th century, Old English poems were claimed as cultural heritage by various non-Anglophone nations, including Scandinavians, Germans and Dutch. These competing nationalistic, cultural appropriations happened against the backdrop of a growing interest in early medieval English language and literature across the European continent.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Learn More Section -->
+    <section class="py-5 bg-black">
+        <div class="container text-center">
+            <h2 class="section-header">Learn more about the project and its sub-projects</h2>
+            <p class="lead mb-5">on the Leiden University website</p>
+
+            <div class="row g-4 justify-content-center">
+                <!-- Tile 1 -->
+                <div class="col-md-4 col-sm-6">
+                    <a href="https://www.universiteitleiden.nl/en/research/research-projects/humanities/emergence" target="_blank" class="text-decoration-none">
+                        <div class="tile bg-dark">
+                            <img src="assets/images/project.main.jpg" alt="Description of the Main Project">
+                            <div class="tile-overlay">
+                                 <h5 class="mb-1">EMERGENCE: Early Medieval English in Nineteenth-Century Europe</h5>
+                                <p class="mb-0">Main project | EMERGENCE Project Team</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Add more tiles as needed -->
+                <div class="col-md-4 col-sm-6">
+                    <a href="https://www.universiteitleiden.nl/en/research/research-projects/humanities/navigating-networks-through-scholarly-correspondence-epistolary-exchange-of-knowledge-on-early-medieval-english" target="_blank" class="text-decoration-none">
+                        <div class="tile bg-dark">
+                            <img src="assets/images/project.letters.jpg" alt="Navigating networks">
+                            <div class="tile-overlay">
+                                <h5 class="mb-1">Navigating Networks through Scholarly Correspondence: Epistolary Exchange of Knowledge on Early Medieval English</h5>
+                                <p class="mb-0">Postdoc project | Rachel A. Fletcher</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-4 col-sm-6">
+                    <a href="https://www.universiteitleiden.nl/en/research/research-projects/humanities/claiming-beowulf-as-a-european-epic-non-anglophone-appropriations-of-an-old-english-poem" target="_blank" class="text-decoration-none">
+                        <div class="tile bg-dark">
+                            <img src="assets/images/project.beowulf.jpg" alt="Beowulf project">
+                            <div class="tile-overlay">
+                                <h5 class="mb-1">Claiming Beowulf as a European Epic: Non-Anglophone Appropriations of an Old English Poem</h5>
+                                <p class="mb-0">PhD project | Suzanne Klare</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-4 col-sm-6">
+                    <a href="https://www.universiteitleiden.nl/en/research/research-projects/humanities/claiming-beowulf-as-a-european-epic-non-anglophone-appropriations-of-an-old-english-poem" target="_blank" class="text-decoration-none">
+                        <div class="tile bg-dark">
+                            <img src="assets/images/project.caedmon.jpg" alt="Caedmon project">
+                            <div class="tile-overlay">
+                                <h5 class="mb-1">Cædmon, Cynewulf and the Continent: The Search for Anglo-Saxon Christianity in 19th-century Europe</h5>
+                                <p class="mb-0">PhD project | Lucas Gahrmann</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+
+                <div class="col-md-4 col-sm-6">
+                    <a href="https://www.universiteitleiden.nl/en/research/research-projects/humanities/p.-j.-cosijn-research-fellowship" target="_blank" class="text-decoration-none">
+                        <div class="tile bg-dark">
+                            <img src="assets/images/project.cosijn.jpg" alt="P. J. Cosijn Research Fellowship">
+                            <div class="tile-overlay">
+                                <h5 class="mb-1">P. J. Cosijn Research Fellowship</h5>
+                                <p class="mb-0">Student assistantships | Thijs Porck</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
+            </div>
         </div>
     </section>
 
