@@ -111,7 +111,13 @@
         const map = L.map('map').setView([52.0, 10], 4);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
-        const markers = L.markerClusterGroup();
+        const markers = L.markerClusterGroup({
+            showCoverageOnHover: false,
+            maxClusterRadius: 80,           
+            disableClusteringAtZoom: 9,     
+            spiderfyOnMaxZoom: true,
+            zoomToBoundsOnClick: true
+            });
         const eventsData = [];
 
         Papa.parse('assets/data/presentations.csv', {
