@@ -30,8 +30,7 @@
             font-style: italic;
         }
         .author-line {
-            color: #ffffff;           /* White, same as title */
-            font-weight: 500;
+            color: #ffffff;           /* Only changed color to white */
         }
     </style>
 </head>
@@ -88,7 +87,6 @@
                 const container = document.getElementById('publicationsList');
                 let html = '';
 
-                // Sort by date descending
                 results.data.sort((a, b) => b.Date.localeCompare(a.Date));
 
                 results.data.forEach(row => {
