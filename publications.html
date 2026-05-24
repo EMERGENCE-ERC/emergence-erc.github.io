@@ -22,12 +22,12 @@
             min-width: 70px;
         }
         .pub-title {
+            color: #f0c14d;
             font-size: 1.22rem;
             line-height: 1.35;
         }
         .pub-journal {
-            color: #f0c14d;
-            font-style: italic;
+            color: #00b4d8;
         }
         .author-line {
             color: #ffffff;
@@ -105,9 +105,10 @@
                                 <div class="flex-grow-1">
                                     <h5 class="pub-title">${row.Title}</h5>
                                     <p class="author-line mb-1">${row.Author} | ${row.Type}</p>
-                                    <p class="pub-journal">${row['Published in'] || ''}</p>
-                                    ${linkHTML}
-                                </div>
+                                    <p class="pub-journal">
+                                        ${row['Published in'] || ''}
+                                        ${row.Link ? ` | ${linkHTML}` : ''}
+                                    </p>
                             </div>
                         </div>`;
                 });
