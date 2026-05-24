@@ -25,30 +25,48 @@
             font-size: 2rem;
             margin-bottom: 2rem;
         }
-        .tile {
-            position: relative;
-            padding-top: 100%;
-            border-radius: 12px;
-            overflow: hidden;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-        .tile:hover {
-            transform: scale(1.05);
-        }
-        .tile img {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            object-fit: cover;
-        }
-        .tile-overlay {
-            position: absolute;
-            bottom: 0; left: 0; right: 0;
-            background: linear-gradient(transparent, rgba(0,0,0,0.9));
-            padding: 20px;
-            text-align: center;
-        }
+    .tile {
+        position: relative;
+        padding-top: 100%;
+        border-radius: 12px;
+        overflow: hidden;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+    }
+
+    .tile:hover {
+        transform: scale(1.05);
+    }
+
+    .tile img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .tile-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(transparent, rgba(0,0,0,0.92));
+        color: white;
+        padding: 20px 15px 15px;
+        text-align: center;
+    }
+
+    .tile-overlay h5 {
+        color: #ffffff;
+        margin-bottom: 6px;
+    }
+
+    .tile-overlay p {
+        color: #cccccc;
+        margin-bottom: 0;
+    }
     </style>
 </head>
 <body>
@@ -78,20 +96,17 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container text-center">
+            <img src="https://www.universiteitleiden.nl/binaries/content/gallery/ul2/main-images/humanities/research-projects/emergence-project/emergence-project---logo-horizontal.jpg" 
+                 alt="EMERGENCE ERC Logo" class="main-logo">
             <h1 class="display-3 fw-bold mb-3">EMERGENCE</h1>
             <p class="lead fs-3 mb-5">Early Medieval English in Nineteenth-Century Europe</p>
             
-            <!-- Bigger Square Logo -->
-            <img src="https://thijsporck.com/wp-content/uploads/2023/11/emergence.logo-met-erc.jpg" 
-                 alt="EMERGENCE ERC Logo" class="main-logo">
-            
             <div class="col-lg-10 mx-auto">
                 <p class="fs-5">
-                In the 19th century, Old English poems were claimed as cultural heritage by various non-Anglophone nations, including Scandinavians, Germans and Dutch. These competing nationalistic, cultural appropriations happened against the backdrop of a growing interest in early medieval English language and literature across the European continent. Exploring this transnational reception of Old English offers a new perspective on the 19th-century foundations of Old English Studies. The EMERGENCE project is funded by a European Research Council (ERC) Starting Grant of €1.5 million to Thijs Porck for 5 years from 2024 (<a href="https://doi.org/10.3030/101115867" target="_blank">Grant . No. 101115867</a>). The project is hosted by the Leiden University Centre for the Arts in Society, the Netherlands.
+                In the 19th century, Old English poems were claimed as cultural heritage by various non-Anglophone nations, including Scandinavians, Germans and Dutch. These competing nationalistic, cultural appropriations happened against the backdrop of a growing interest in early medieval English language and literature across the European continent. Exploring this transnational reception of Old English offers a new perspective on the 19th-century foundations of Old English Studies. 
+                <br> The EMERGENCE project is funded by a European Research Council (ERC) Starting Grant of €1.5 million to Thijs Porck for 5 years from 2024 (<a href="https://doi.org/10.3030/101115867" target="_blank">Grant . No. 101115867</a>). The project is hosted by the Leiden University Centre for the Arts in Society, the Netherlands.
                 </p>
         </div>
-                
-                
                 </p>
             </div>
         </div>
