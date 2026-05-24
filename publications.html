@@ -29,6 +29,10 @@
             color: #f0c14d;
             font-style: italic;
         }
+        .author-line {
+            color: #ffffff;           /* White, same as title */
+            font-weight: 500;
+        }
     </style>
 </head>
 <body>
@@ -84,7 +88,8 @@
                 const container = document.getElementById('publicationsList');
                 let html = '';
 
-                results.data.sort((a, b) => b.Date.localeCompare(a.Date)); // Sort by date descending
+                // Sort by date descending
+                results.data.sort((a, b) => b.Date.localeCompare(a.Date));
 
                 results.data.forEach(row => {
                     if (!row.Title) return;
@@ -98,7 +103,7 @@
                                 <div class="pub-year">${row.Date}</div>
                                 <div class="flex-grow-1">
                                     <h5 class="pub-title">${row.Title}</h5>
-                                    <p class="text-light-emphasis mb-1">${row.Author}</p>
+                                    <p class="author-line mb-1">${row.Author} | ${row.Type}</p>
                                     <p class="pub-journal">${row['Published in'] || ''}</p>
                                     ${linkHTML}
                                 </div>
