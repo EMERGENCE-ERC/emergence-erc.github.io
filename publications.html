@@ -10,37 +10,64 @@
     
     <style>
         .publication-item {
-            padding: 1.6rem 0;
-            border-bottom: 1px solid #333;
+            padding: 1.25rem 0;
+            border-bottom: 1px solid #222;
+            transition: background-color 0.2s ease;
         }
         .publication-item:last-child {
             border-bottom: none;
         }
+        .publication-item:hover {
+            background-color: rgba(0, 180, 216, 0.05);
+        }
+
         .pub-year {
             color: #00b4d8;
-            font-weight: 600;
-            min-width: 70px;
+            font-weight: 700;
+            min-width: 72px;
+            font-size: 1.1rem;
         }
+
         .pub-title {
             color: #ffffff;
-            font-size: 1.22rem;
-            line-height: 1.35;
+            font-size: 1.18rem;
+            line-height: 1.4;
+            margin-bottom: 0.35rem;
         }
+
         .pub-journal {
             color: #00b4d8;
+            font-weight: 500;
         }
+
         .author-line {
-            color: #ffffff;
+            color: #cccccc;
+            font-size: 0.97rem;
+        }
+
+        .year-header {
+            background-color: #111;
+            color: #00b4d8;
+            padding: 0.9rem 1.25rem;
+            margin: 2.5rem 0 1.25rem 0;
+            border-radius: 4px;
+            font-size: 1.35rem;
+            font-weight: 600;
+            border-left: 4px solid #00b4d8;
+        }
+
+        .pub-link {
+            font-size: 0.95rem;
         }
     </style>
 </head>
 <body>
-    <!-- Top Navigation -->
+    <!-- Top Navigation (unchanged) -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
             <a class="navbar-brand" href="index.html">
                 <img src="https://www.universiteitleiden.nl/binaries/content/gallery/ul2/main-images/humanities/research-projects/emergence-project/emergence-project---logo-horizontal.jpg" 
-                     alt="EMERGENCE ERC Logo" class="logo">
+                     alt="EMERGENCE ERC Logo" class="logo" style="max-height: 50px;">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -58,13 +85,15 @@
         </div>
     </nav>
 
-    <section class="py-5" style="background-color: #0a0a0a; margin-top: 70px;">
-        <div class="container text-center">
-            <h1 class="display-4 fw-bold">Publications</h1>
-            <p class="lead text-light">Research outputs from members of the EMERGENCE Project</p>
+    <!-- Hero -->
+    <section class="hero-publications text-center" style="background-color: #0a0a0a; padding: 4.5rem 0 3rem;">
+        <div class="container">
+            <h1 class="display-4 fw-bold mb-2">Publications</h1>
+            <p class="lead text-light mb-0">Research outputs from members of the EMERGENCE Project</p>
         </div>
     </section>
 
+    <!-- Publications List -->
     <section class="py-5">
         <div class="container">
             <div class="row justify-content-center">
@@ -84,30 +113,55 @@
                 const container = document.getElementById('publicationsList');
                 let html = '';
 
-                results.data.sort((a, b) => b.Date.localeCompare(a.Date));
+                // Sort: "forthc." first, then years descending
+                results.data.sort((a, b) => {
+                    const yearA = a.Date?.trim().toLowerCase();
+                    const yearB = b.Date?.trim().toLowerCase();
+                    
+                    if (yearA === 'forthc.' || yearA === 'forthcoming') return -1;
+                    if (yearB === 'forthc.' || yearB === 'forthcoming') return 1;
+                    
+                    return yearB.localeCompare(yearA); // descending year
+                });
+
+                let currentYear = null;
 
                 results.data.forEach(row => {
                     if (!row.Title) return;
+
+                    const year = row.Date?.trim() || '';
+
+                    // Add year header when group changes
+                    if (year !== currentYear) {
+                        currentYear = year;
+                        const displayYear = year.toLowerCase() === 'forthc.' ? 'Forthcoming' : year;
+                        
+                        html += `
+                            <div class="year-header">
+                                ${displayYear}
+                            </div>`;
+                    }
 
                     let linkHTML = '';
                     if (row.Link) {
                         const linkText = (row['Open Access'] && row['Open Access'].toLowerCase() === 'yes') 
                             ? 'Open Access' 
                             : 'Link';
-                        linkHTML = `<a href="${row.Link}" target="_blank" class="text-info">${linkText}</a>`;
+                        linkHTML = `<a href="${row.Link}" target="_blank" class="text-info pub-link">${linkText}</a>`;
                     }
 
                     html += `
                         <div class="publication-item">
-                            <div class="d-flex">
-                                <div class="pub-year">${row.Date}</div>
+                            <div class="d-flex flex-column flex-md-row gap-3 gap-md-4">
+                                <div class="pub-year text-md-end">${year}</div>
                                 <div class="flex-grow-1">
                                     <h5 class="pub-title">${row.Title}</h5>
-                                    <p class="author-line mb-1">${row.Author} | ${row.Type}</p>
-                                    <p class="pub-journal">
+                                    <p class="author-line mb-1">${row.Author} • ${row.Type}</p>
+                                    <p class="pub-journal mb-0">
                                         ${row['Published in'] || ''}
-                                        ${row.Link ? ` | ${linkHTML}` : ''}
+                                        ${row.Link ? ` • ${linkHTML}` : ''}
                                     </p>
+                                </div>
                             </div>
                         </div>`;
                 });
@@ -117,12 +171,11 @@
         });
     </script>
 
-        <!-- Footer -->
+    <!-- Footer -->
     <footer class="py-5 text-center border-top border-secondary mt-5">
         <div class="container">
             <p class="mb-0 text-info">© EMERGENCE 2026. All rights reserved.</p>
         </div>
     </footer>
-    
 </body>
 </html>
