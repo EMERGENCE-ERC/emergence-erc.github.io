@@ -10,36 +10,34 @@
     
     <style>
         .publication-item {
-            padding: 1.4rem 0;
+            padding: 1.6rem 1.5rem;
             border-bottom: 1px solid #222;
             transition: background-color 0.2s ease;
-        }
-        
-        .publication-item:last-child {
-            border-bottom: none;
+            border-radius: 6px;
+            height: 100%;
         }
         
         .publication-item:hover {
-            background-color: rgba(0, 180, 216, 0.05);
+            background-color: rgba(0, 180, 216, 0.06);
         }
 
         .pub-year {
             color: #00b4d8;
             font-weight: 700;
-            min-width: 72px;
-            font-size: 1.12rem;
+            min-width: 74px;
+            font-size: 1.13rem;
         }
 
         .pub-title {
             color: #ffffff;
-            font-size: 1.19rem;
-            line-height: 1.4;
-            margin-bottom: 0.4rem;
+            font-size: 1.17rem;
+            line-height: 1.42;
+            margin-bottom: 0.45rem;
         }
 
         .author-line {
             color: #cccccc;
-            font-size: 0.98rem;
+            font-size: 0.97rem;
         }
 
         .pub-journal {
@@ -47,8 +45,22 @@
             font-weight: 500;
         }
 
-        .pub-link {
-            font-size: 0.95rem;
+        .pub-image {
+            width: 85px;
+            max-height: 115px;
+            object-fit: contain;
+            border: 1px solid #333;
+            border-radius: 6px;
+            background-color: #111;
+            flex-shrink: 0;
+        }
+
+        .pub-link { 
+            font-size: 0.95rem; 
+        }
+
+        .left-column {
+            min-width: 110px;
         }
     </style>
 </head>
@@ -87,9 +99,7 @@
     <!-- Publications List -->
     <section class="py-5">
         <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-11" id="publicationsList"></div>
-            </div>
+            <div class="row g-4" id="publicationsList"></div>
         </div>
     </section>
 
@@ -110,22 +120,36 @@
                     let linkHTML = '';
                     if (row.Link) {
                         const linkText = (row['Open Access'] && row['Open Access'].toLowerCase() === 'yes') 
-                            ? 'Open Access' 
-                            : 'Link';
+                            ? 'Open Access' : 'Link';
                         linkHTML = `<a href="${row.Link}" target="_blank" class="text-info pub-link">${linkText}</a>`;
                     }
 
+                    let imageHTML = '';
+                    if (row.Image) {
+                        const imgSrc = row.Image.startsWith('http') ? row.Image : `assets/images/publications/${row.Image}`;
+                        imageHTML = `<img src="${imgSrc}" alt="Journal or Book Cover" class="pub-image">`;
+                    }
+
                     html += `
-                        <div class="publication-item">
-                            <div class="d-flex flex-column flex-md-row gap-3 gap-md-4">
-                                <div class="pub-year text-md-end">${row.Date}</div>
-                                <div class="flex-grow-1">
-                                    <h5 class="pub-title">${row.Title}</h5>
-                                    <p class="author-line mb-1">${row.Author} • ${row.Type}</p>
-                                    <p class="pub-journal mb-0">
-                                        ${row['Published in'] || ''}
-                                        ${row.Link ? ` • ${linkHTML}` : ''}
-                                    </p>
+                        <div class="col-12 col-lg-6">
+                            <div class="publication-item h-100">
+                                <div class="d-flex flex-column flex-sm-row gap-3 gap-sm-4 h-100">
+                                    
+                                    <!-- Left Column: Year + Image -->
+                                    <div class="left-column d-flex flex-column align-items-start align-items-sm-center">
+                                        <div class="pub-year mb-3">${row.Date}</div>
+                                        ${imageHTML ? imageHTML : '<div style="width:85px; height:20px;"></div>'}
+                                    </div>
+                                    
+                                    <!-- Main Content -->
+                                    <div class="flex-grow-1">
+                                        <h5 class="pub-title">${row.Title}</h5>
+                                        <p class="author-line mb-1">${row.Author} • ${row.Type}</p>
+                                        <p class="pub-journal mb-0">
+                                            ${row['Published in'] || ''}
+                                            ${row.Link ? ` • ${linkHTML}` : ''}
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>`;
