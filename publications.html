@@ -10,13 +10,15 @@
     
     <style>
         .publication-item {
-            padding: 1.25rem 0;
+            padding: 1.4rem 0;
             border-bottom: 1px solid #222;
             transition: background-color 0.2s ease;
         }
+        
         .publication-item:last-child {
             border-bottom: none;
         }
+        
         .publication-item:hover {
             background-color: rgba(0, 180, 216, 0.05);
         }
@@ -25,35 +27,24 @@
             color: #00b4d8;
             font-weight: 700;
             min-width: 72px;
-            font-size: 1.1rem;
+            font-size: 1.12rem;
         }
 
         .pub-title {
             color: #ffffff;
-            font-size: 1.18rem;
+            font-size: 1.19rem;
             line-height: 1.4;
-            margin-bottom: 0.35rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .author-line {
+            color: #cccccc;
+            font-size: 0.98rem;
         }
 
         .pub-journal {
             color: #00b4d8;
             font-weight: 500;
-        }
-
-        .author-line {
-            color: #cccccc;
-            font-size: 0.97rem;
-        }
-
-        .year-header {
-            background-color: #111;
-            color: #00b4d8;
-            padding: 0.9rem 1.25rem;
-            margin: 2.5rem 0 1.25rem 0;
-            border-radius: 4px;
-            font-size: 1.35rem;
-            font-weight: 600;
-            border-left: 4px solid #00b4d8;
         }
 
         .pub-link {
@@ -62,7 +53,7 @@
     </style>
 </head>
 <body>
-    <!-- Top Navigation (unchanged) -->
+    <!-- Top Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
             <a class="navbar-brand" href="index.html">
@@ -86,10 +77,10 @@
     </nav>
 
     <!-- Hero -->
-    <section class="hero-publications text-center" style="background-color: #0a0a0a; padding: 4.5rem 0 3rem;">
+    <section class="text-center py-5" style="background-color: #0a0a0a; margin-top: 70px;">
         <div class="container">
             <h1 class="display-4 fw-bold mb-2">Publications</h1>
-            <p class="lead text-light mb-0">Research outputs from members of the EMERGENCE Project</p>
+            <p class="lead text-light">Research outputs from members of the EMERGENCE Project</p>
         </div>
     </section>
 
@@ -113,34 +104,8 @@
                 const container = document.getElementById('publicationsList');
                 let html = '';
 
-                // Sort: "forthc." first, then years descending
-                results.data.sort((a, b) => {
-                    const yearA = a.Date?.trim().toLowerCase();
-                    const yearB = b.Date?.trim().toLowerCase();
-                    
-                    if (yearA === 'forthc.' || yearA === 'forthcoming') return -1;
-                    if (yearB === 'forthc.' || yearB === 'forthcoming') return 1;
-                    
-                    return yearB.localeCompare(yearA); // descending year
-                });
-
-                let currentYear = null;
-
                 results.data.forEach(row => {
                     if (!row.Title) return;
-
-                    const year = row.Date?.trim() || '';
-
-                    // Add year header when group changes
-                    if (year !== currentYear) {
-                        currentYear = year;
-                        const displayYear = year.toLowerCase() === 'forthc.' ? 'Forthcoming' : year;
-                        
-                        html += `
-                            <div class="year-header">
-                                ${displayYear}
-                            </div>`;
-                    }
 
                     let linkHTML = '';
                     if (row.Link) {
@@ -153,7 +118,7 @@
                     html += `
                         <div class="publication-item">
                             <div class="d-flex flex-column flex-md-row gap-3 gap-md-4">
-                                <div class="pub-year text-md-end">${year}</div>
+                                <div class="pub-year text-md-end">${row.Date}</div>
                                 <div class="flex-grow-1">
                                     <h5 class="pub-title">${row.Title}</h5>
                                     <p class="author-line mb-1">${row.Author} • ${row.Type}</p>
