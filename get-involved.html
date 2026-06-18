@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMERGENCE | Get involved</title>
+    
+    <!-- Favicon & Meta tags -->
+    <link rel="icon" href="assets/images/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon.png">
+    
+    <meta property="og:title" content="EMERGENCE | Get involved">
+    <meta property="og:description" content="Join or support the EMERGENCE ERC Project">
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMERGENCE | Get involved</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    
+    <style>
+        /* Same tile style as Blog page */
+        .involve-tile {
+            position: relative;
+            width: 100%;
+            padding-top: 100%; /* Square tiles */
+            overflow: hidden;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .involve-tile:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 212, 255, 0.25);
+        }
+        .involve-tile img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .involve-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.92));
+            color: white;
+            padding: 20px 15px 15px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="https://www.universiteitleiden.nl/binaries/content/gallery/ul2/main-images/humanities/research-projects/emergence-project/emergence-project---logo-horizontal.jpg" 
+                     alt="EMERGENCE ERC Logo" class="logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="team.html">Team</a></li>
+                    <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="events.html">Events</a></li>
+                    <li class="nav-item"><a class="nav-link" href="publications.html">Publications</a></li>
+                    <li class="nav-item"><a class="nav-link" href="database.html">Database</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="get-involved.html">Get Involved</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <section class="py-5" style="background-color: #0a0a0a; margin-top: 70px;">
+        <div class="container text-center">
+            <h1 class="display-4 fw-bold">Get involved</h1>
+            <p class="lead text-light">Join or support the EMERGENCE Project</p>
+        </div>
+    </section>
+
+    <!-- Tiles -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row g-4 justify-content-center">
+
+                <!-- Advisory Board -->
+                <div class="col-md-4 col-sm-6">
+                    <a href="advisory-board.html" class="text-decoration-none">
+                        <div class="involve-tile bg-dark">
+                            <img src="assets/images/tiles/advisory-board.jpg" alt="International Advisory Board">
+                            <div class="involve-overlay">
+                                <h5 class="mb-1">GEFERAN</h5>
+                                <p class="mb-1 text-info">International Advisory Board</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Opportunities for Students -->
+                <div class="col-md-4 col-sm-6">
+                    <a href="students.html" class="text-decoration-none">
+                        <div class="involve-tile bg-dark">
+                            <img src="assets/images/tiles/students.jpg" alt="Opportunities for Students">
+                            <div class="involve-overlay">
+                                <h5 class="mb-1">LEORNINGCNIHTAS</h5>
+                                <p class="mb-1 text-info">Opportunities for students</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Calls for Collaboration -->
+                <div class="col-md-4 col-sm-6">
+                    <a href="collaborate.html" class="text-decoration-none">
+                        <div class="involve-tile bg-dark">
+                            <img src="assets/images/tiles/collaborate.jpg" alt="Calls for Collaboration">
+                            <div class="involve-overlay">
+                                <h5 class="mb-1">FREONDAS</h5>
+                                <p class="mb-1 text-info">Call for collaborations</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-5 text-center border-top border-secondary mt-5">
+        <div class="container">
+            <p class="mb-0 text-info">© EMERGENCE 2026. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
