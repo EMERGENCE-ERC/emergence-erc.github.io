@@ -239,13 +239,52 @@
         </div>
     </section>
 
-        <!-- Calls for Collaboration -->
+        <!-- Contact form -->
     <section id="contact" class="py-5">
         <div class="container">
             <h2 class="text-center mb-5">Contact form</h2>
             <div class="row justify-content-center">
                 <div class="col-lg-8">
-                    <p class="lead text-center mb-4">Contact form will appear here!!</p>
+                    
+<div class="qualtrics-container">
+  <iframe 
+    id="qualtrics-iframe"
+    src="https://leidenuniv.eu.qualtrics.com/jfe/form/SV_9Yys1znJQNTPiBM"
+    width="100%" 
+    height="800" 
+    frameborder="0" 
+    marginheight="0" 
+    marginwidth="0"
+    allowfullscreen>
+  </iframe>
+</div>
+
+<!-- Auto-resize script (highly recommended) -->
+<script>
+  window.addEventListener('message', function(event) {
+    if (event.origin.includes('qualtrics.com')) {
+      const iframe = document.getElementById('qualtrics-iframe');
+      if (iframe && event.data && event.data.height) {
+        iframe.style.height = event.data.height + 'px';
+      }
+    }
+  });
+</script>
+
+<style>
+  .qualtrics-container {
+    max-width: 760px;           /* Adjust this to control overall width */
+    margin: 0 auto;             /* Centers the form */
+    padding: 20px 0;
+  }
+  
+  iframe {
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    background: white;
+  }
+</style>
 
                 </div>
             </div>
