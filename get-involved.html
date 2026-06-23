@@ -249,9 +249,9 @@
 <div class="qualtrics-container">
   <iframe 
     id="qualtrics-iframe"
-    src="https://leidenuniv.eu.qualtrics.com/jfe/form/SV_9Yys1znJQNTPiBM"
+    src="YOUR_SURVEY_LINK_HERE"
     width="100%" 
-    height="100%" 
+    height="600" 
     frameborder="0" 
     marginheight="0" 
     marginwidth="0"
@@ -259,30 +259,43 @@
   </iframe>
 </div>
 
-<!-- Auto-resize script (highly recommended) -->
 <script>
+  // Auto-resize Qualtrics iframe
+  function resizeIframe() {
+    const iframe = document.getElementById('qualtrics-iframe');
+    if (iframe) {
+      iframe.style.height = "600px"; // initial height
+      setTimeout(() => {
+        const height = iframe.contentWindow.document.body.scrollHeight + 50; // +50 for safety margin
+        iframe.style.height = height + "px";
+      }, 800); // small delay to let Qualtrics load
+    }
+  }
+
+  // Run when iframe loads
+  document.getElementById('qualtrics-iframe').onload = resizeIframe;
+
+  // Also listen for messages from Qualtrics (better method)
   window.addEventListener('message', function(event) {
-    if (event.origin.includes('qualtrics.com')) {
-      const iframe = document.getElementById('qualtrics-iframe');
-      if (iframe && event.data && event.data.height) {
-        iframe.style.height = event.data.height + 'px';
-      }
+    if (event.origin.includes('qualtrics.com') && event.data && event.data.height) {
+      document.getElementById('qualtrics-iframe').style.height = event.data.height + 'px';
     }
   });
 </script>
 
 <style>
   .qualtrics-container {
-    max-width: 1000px;           /* Adjust this to control overall width */
-    margin: 0 auto;             /* Centers the form */
-    padding: 0px 0;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 20px 0;
   }
   
   iframe {
     border: none;
     border-radius: 8px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-    background: white;
+    background: #ffffff;
+    overflow: hidden;
   }
 </style>
 
