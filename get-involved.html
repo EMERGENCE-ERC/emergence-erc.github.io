@@ -162,14 +162,37 @@ input::placeholder {
     const successMsg = document.getElementById('successMessage');
     const submitBtn = document.getElementById('submitBtn');
 
-    form.addEventListener('submit', function(e) {
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault();                    // ← Prevents redirect
+        
         submitBtn.disabled = true;
         submitBtn.textContent = 'Submitting...';
 
-        setTimeout(() => {
-            form.style.display = 'none';
-            successMsg.style.display = 'block';
-        }, 800);
+        const formData = new FormData();
+        formData.append('qname', document.querySelector('input[name="qname"]').value);
+        formData.append('qemail', document.querySelector('input[name="qemail"]').value);
+
+        try {
+            const response = await fetch('https://leidenuniv.eu.qualtrics.com/jfe/form/SV_3UHEonVobRJYp0O', {
+                method: 'POST',
+                body: formData
+            });
+
+            // Qualtrics usually returns a redirect or success page even on AJAX
+            if (response.ok || response.status === 200 || response.status === 302) {
+                form.style.display = 'none';
+                successMsg.style.display = 'block';
+            } else {
+                alert('Something went wrong. Please try again.');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Submit';
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Submission failed. Please try again later.');
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Submit';
+        }
     });
 </script>
     
@@ -414,48 +437,40 @@ input::placeholder {
 <footer class="py-5 text-center border-top border-secondary mt-5">
     <div class="container">
         
-        <!-- Signup Widget -->
-        <div class="mb-4">
-            <div class="signup-widget mx-auto" style="max-width: 920px;">
-                <form id="qualtricsForm" action="https://leidenuniv.eu.qualtrics.com/jfe/form/SV_3UHEonVobRJYp0O" method="POST">
-
-                    <div class="signup-container">
-                        <!-- Label -->
-                        <div class="label">
-                            Sign up for news and updates
-                        </div>
-
-                        <!-- Two inputs -->
-                        <div class="inputs">
-                            <input type="text" 
-                                   name="qname" 
-                                   placeholder="Firstname Lastname (Institution)" 
-                                   required>
-                            
-                            <input type="email" 
-                                   name="qemail" 
-                                   placeholder="email@address.com" 
-                                   required>
-                        </div>
-
-                        <!-- Submit Button -->
-                        <button type="submit" class="submit-btn" id="submitBtn">Submit</button>
-                    </div>
-
-                    <!-- GDPR -->
-                    <div class="gdpr">
-                        Your data will be processed in accordance with our 
-                        <a href="https://www.universiteitleiden.nl/en/privacy" target="_blank" rel="noopener">privacy policy</a> (GDPR compliant).
-                    </div>
-
-                </form>
-
-                <!-- Success Message -->
-                <div id="successMessage">
-                    ✅ Thank you! You have been signed up successfully.
+<!-- Signup Widget -->
+<div class="mb-4">
+    <div class="signup-widget mx-auto" style="max-width: 920px;">
+        <form id="qualtricsForm">
+            <div class="signup-container">
+                <div class="label">Sign up for news and updates</div>
+                
+                <div class="inputs">
+                    <input type="text" 
+                           name="qname" 
+                           placeholder="Firstname Lastname (Institution)" 
+                           required>
+                    
+                    <input type="email" 
+                           name="qemail" 
+                           placeholder="email@address.com" 
+                           required>
                 </div>
+
+                <button type="submit" class="submit-btn" id="submitBtn">Submit</button>
             </div>
+
+            <div class="gdpr">
+                Your data will be processed in accordance with our 
+                <a href="https://www.universiteitleiden.nl/en/privacy" target="_blank" rel="noopener">privacy policy</a> (GDPR compliant).
+            </div>
+        </form>
+
+        <!-- Success Message -->
+        <div id="successMessage" style="display:none;">
+            ✅ Thank you! You have been signed up successfully.
         </div>
+    </div>
+</div>
 
         <!-- Copyright -->
         <p class="mb-0 text-info">© EMERGENCE 2026. All rights reserved.</p>
