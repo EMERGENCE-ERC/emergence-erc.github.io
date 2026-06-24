@@ -3,7 +3,7 @@
 }
 
 body {
-    background-color: #000000;
+    background-color: red !important;
     color: #ffffff;
     font-family: "Bookman Old Style", Georgia, "Times New Roman", serif;
     line-height: 1.6;
