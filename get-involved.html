@@ -60,130 +60,6 @@
                 }
 }
 </style>
-<style>
-.signup-widget {
-    background: #111;
-    color: #ddd;
-    padding: 18px 24px;
-    border-radius: 8px;
-    font-family: system-ui, -apple-system, sans-serif;
-}
-
-.signup-container {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 16px;
-    justify-content: center;
-}
-
-.label {
-    font-size: 17px;
-    font-weight: 500;
-    white-space: nowrap;
-    min-width: 190px;
-}
-
-.inputs {
-    display: flex;
-    gap: 10px;
-    flex: 1;
-    min-width: 0;
-}
-
-input[name="qname"] {
-    width: 400px;           /* Wider - fits the full placeholder */
-    padding: 11px 14px;
-    border: 1px solid #555;
-    border-radius: 4px;
-    background: #222;
-    color: #fff;
-    font-size: 15.5px;
-    box-sizing: border-box;
-}
-
-input[name="qemail"] {
-    width: 260px;           /* Narrower to compensate */
-    padding: 11px 14px;
-    border: 1px solid #555;
-    border-radius: 4px;
-    background: #222;
-    color: #fff;
-    font-size: 15.5px;
-    box-sizing: border-box;
-}
-
-input::placeholder {
-    color: #888;
-}
-
-.submit-btn {
-    padding: 12px 32px;
-    background: #0b6ed0;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-size: 16px;
-    cursor: pointer;
-    white-space: nowrap;
-    height: 46px;
-}
-
-.submit-btn:hover {
-    background: #0a5bb8;
-}
-
-.gdpr {
-    font-size: 13px;
-    color: #aaa;
-    margin-top: 12px;
-    line-height: 1.4;
-}
-
-.gdpr a {
-    color: #6cb0ff;
-    text-decoration: underline;
-}
-
-#successMessage {
-    display: none;
-    background: #1a3c1a;
-    color: #4ade80;
-    padding: 16px 20px;
-    border-radius: 6px;
-    margin-top: 12px;
-    font-size: 16px;
-}
-    </style>
-</head>
-
-<script>
-function submitHandler() {
-    const btn = document.getElementById('submitBtn');
-    btn.disabled = true;
-    btn.textContent = 'Submitting...';
-
-    const form = document.getElementById('qualtricsForm');
-
-    // Add hidden fields with correct Qualtrics QIDs
-    const nameField = document.createElement('input');
-    nameField.type = 'hidden';
-    nameField.name = 'QID3';
-    nameField.value = document.getElementById('qname_input').value.trim();
-    form.appendChild(nameField);
-
-    const emailField = document.createElement('input');
-    emailField.type = 'hidden';
-    emailField.name = 'QID4';        
-    emailField.value = document.getElementById('qemail_input').value.trim();
-    form.appendChild(emailField);
-
-    setTimeout(() => {
-        form.style.display = 'none';
-        document.getElementById('successMessage').style.display = 'block';
-    }, 1000);
-}
-</script>
     
 <body>
     <!-- Top Navigation -->
@@ -426,40 +302,39 @@ function submitHandler() {
 <footer class="py-5 text-center border-top border-secondary mt-5">
     <div class="container">
         
-<!-- Signup Widget -->
+
+<!-- Simple & Reliable Version which does not work -->
 <div class="mb-4">
-    <div class="signup-widget mx-auto" style="max-width: 920px;">
+    <div class="signup-widget mx-auto" style="max-width: 1000px; background:#111; padding:20px; border-radius:8px;">
         
-        <form id="qualtricsForm" 
-              action="https://leidenuniv.eu.qualtrics.com/jfe/form/SV_3UHEonVobRJYp0O" 
-              method="POST" 
-              target="qualtricsIframe"
-              onsubmit="submitHandler()">
+        <form action="https://leidenuniv.eu.qualtrics.com/jfe/form/SV_3UHEonVobRJYp0O" 
+              method="GET" 
+              target="_blank">
 
-            <div class="signup-container">
-                <div class="label">Sign up for news and updates</div>
-                
-                <div class="inputs">
-                    <input type="text" id="qname_input" placeholder="Firstname Lastname (Institution)" required>
-                    <input type="email" id="qemail_input" placeholder="email@address.com" required>
+            <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap; justify-content:center;">
+                <div style="font-size:17px; font-weight:500; white-space:nowrap; min-width:200px;">
+                    Sign up for news and updates
                 </div>
-
-                <button type="submit" class="submit-btn" id="submitBtn">Submit</button>
+                
+                <input type="text" name="QID3" 
+                       placeholder="Firstname Lastname (Institution)" 
+                       style="width:400px; padding:12px; background:#222; color:white; border:1px solid #555; border-radius:4px;" required>
+                
+                <input type="email" name="QID4" 
+                       placeholder="email@address.com" 
+                       style="width:260px; padding:12px; background:#222; color:white; border:1px solid #555; border-radius:4px;" required>
+                
+                <button type="submit" 
+                        style="padding:12px 32px; background:#0b6ed0; color:white; border:none; border-radius:4px; cursor:pointer; white-space:nowrap;">
+                    Submit
+                </button>
             </div>
 
-            <div class="gdpr">
+            <div style="margin-top:12px; font-size:13.5px; color:#aaa; text-align:center;">
                 Your data will be processed in accordance with our 
-                <a href="https://www.universiteitleiden.nl/en/privacy" target="_blank">privacy policy</a> (GDPR compliant).
+                <a href="https://www.universiteitleiden.nl/en/privacy" target="_blank">privacy policy</a> (GDPR compliant). ALSO: IT DOES NOT WORK.
             </div>
         </form>
-
-        <!-- Hidden iframe -->
-        <iframe name="qualtricsIframe" style="display:none; width:0; height:0; border:0;"></iframe>
-
-        <!-- Success Message -->
-        <div id="successMessage" style="display:none; margin-top:12px; color:#4ade80; font-weight:500;">
-            ✅ Thank you! You have been signed up successfully.
-        </div>
     </div>
 </div>
 
