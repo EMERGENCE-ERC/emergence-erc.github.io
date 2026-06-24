@@ -98,3 +98,20 @@ div[id] {
 }
     font-size: 1.35rem;
 }
+
+/* ==================== QUALTRICS CONTACT FORM ==================== */
+.qualtrics-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.qualtrics-container iframe {
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    background: #ffffff;
+    overflow: hidden;
+    width: 100%;
+    min-height: 800px;           /* fallback */
+}
