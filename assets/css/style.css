@@ -1,3 +1,7 @@
+.main-content {
+    padding-top: 80px;     /* Adjust this number (in px) until top menu does not cover main content */
+}
+
 body {
     background-color: #000000;
     color: #ffffff;
