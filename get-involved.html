@@ -158,37 +158,32 @@ input::placeholder {
 </head>
 
 <script>
-    document.getElementById('qualtricsForm').addEventListener('submit', async function(e) {
-        e.preventDefault();   // This is critical
+    const form = document.getElementById('qualtricsForm');
+    const successMsg = document.getElementById('successMessage');
+    const submitBtn = document.getElementById('submitBtn');
 
-        const submitBtn = document.getElementById('submitBtn');
-        const successMsg = document.getElementById('successMessage');
-        const form = this;
+    form.addEventListener('submit', function() {
+        // Copy visible input values to hidden fields that Qualtrics expects
+        const hiddenName = document.createElement('input');
+        hiddenName.type = 'hidden';
+        hiddenName.name = 'qname';
+        hiddenName.value = document.getElementById('qname_input').value.trim();
+        form.appendChild(hiddenName);
+
+        const hiddenEmail = document.createElement('input');
+        hiddenEmail.type = 'hidden';
+        hiddenEmail.name = 'qemail';
+        hiddenEmail.value = document.getElementById('qemail_input').value.trim();
+        form.appendChild(hiddenEmail);
 
         submitBtn.disabled = true;
         submitBtn.textContent = 'Submitting...';
 
-        const formData = new FormData();
-        formData.append('qname', document.getElementById('qname').value.trim());
-        formData.append('qemail', document.getElementById('qemail').value.trim());
-
-        try {
-            const response = await fetch('https://leidenuniv.eu.qualtrics.com/jfe/form/SV_3UHEonVobRJYp0O', {
-                method: 'POST',
-                body: formData,
-                mode: 'no-cors'          // Important for external domains
-            });
-
-            // Even with no-cors we assume success if no error thrown
+        // Show success message after a short delay
+        setTimeout(() => {
             form.style.display = 'none';
             successMsg.style.display = 'block';
-
-        } catch (error) {
-            console.error('Submission error:', error);
-            alert('Submission failed. Please try again.');
-            submitBtn.disabled = false;
-            submitBtn.textContent = 'Submit';
-        }
+        }, 1000);
     });
 </script>
     
@@ -436,20 +431,23 @@ input::placeholder {
 <!-- Signup Widget -->
 <div class="mb-4">
     <div class="signup-widget mx-auto" style="max-width: 920px;">
-        <form id="qualtricsForm">
+        
+        <form id="qualtricsForm" 
+              action="https://leidenuniv.eu.qualtrics.com/jfe/form/SV_3UHEonVobRJYp0O" 
+              method="POST" 
+              target="qualtricsIframe">
+
             <div class="signup-container">
                 <div class="label">Sign up for news and updates</div>
                 
                 <div class="inputs">
                     <input type="text" 
-                           id="qname"
-                           name="qname" 
+                           id="qname_input"
                            placeholder="Firstname Lastname (Institution)" 
                            required>
                     
                     <input type="email" 
-                           id="qemail"
-                           name="qemail" 
+                           id="qemail_input"
                            placeholder="email@address.com" 
                            required>
                 </div>
@@ -463,6 +461,10 @@ input::placeholder {
             </div>
         </form>
 
+        <!-- Hidden iframe -->
+        <iframe name="qualtricsIframe" style="display: none; width:0; height:0; border:none;"></iframe>
+
+        <!-- Success Message -->
         <div id="successMessage" style="display: none;">
             ✅ Thank you! You have been signed up successfully.
         </div>
