@@ -158,38 +158,34 @@ input::placeholder {
 </head>
 
 <script>
-    const form = document.getElementById('qualtricsForm');
-    const successMsg = document.getElementById('successMessage');
-    const submitBtn = document.getElementById('submitBtn');
+    document.getElementById('qualtricsForm').addEventListener('submit', async function(e) {
+        e.preventDefault();   // This is critical
 
-    form.addEventListener('submit', async function(e) {
-        e.preventDefault();                    // ← Prevents redirect
-        
+        const submitBtn = document.getElementById('submitBtn');
+        const successMsg = document.getElementById('successMessage');
+        const form = this;
+
         submitBtn.disabled = true;
         submitBtn.textContent = 'Submitting...';
 
         const formData = new FormData();
-        formData.append('qname', document.querySelector('input[name="qname"]').value);
-        formData.append('qemail', document.querySelector('input[name="qemail"]').value);
+        formData.append('qname', document.getElementById('qname').value.trim());
+        formData.append('qemail', document.getElementById('qemail').value.trim());
 
         try {
             const response = await fetch('https://leidenuniv.eu.qualtrics.com/jfe/form/SV_3UHEonVobRJYp0O', {
                 method: 'POST',
-                body: formData
+                body: formData,
+                mode: 'no-cors'          // Important for external domains
             });
 
-            // Qualtrics usually returns a redirect or success page even on AJAX
-            if (response.ok || response.status === 200 || response.status === 302) {
-                form.style.display = 'none';
-                successMsg.style.display = 'block';
-            } else {
-                alert('Something went wrong. Please try again.');
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Submit';
-            }
+            // Even with no-cors we assume success if no error thrown
+            form.style.display = 'none';
+            successMsg.style.display = 'block';
+
         } catch (error) {
-            console.error('Error:', error);
-            alert('Submission failed. Please try again later.');
+            console.error('Submission error:', error);
+            alert('Submission failed. Please try again.');
             submitBtn.disabled = false;
             submitBtn.textContent = 'Submit';
         }
@@ -446,11 +442,13 @@ input::placeholder {
                 
                 <div class="inputs">
                     <input type="text" 
+                           id="qname"
                            name="qname" 
                            placeholder="Firstname Lastname (Institution)" 
                            required>
                     
                     <input type="email" 
+                           id="qemail"
                            name="qemail" 
                            placeholder="email@address.com" 
                            required>
@@ -465,8 +463,7 @@ input::placeholder {
             </div>
         </form>
 
-        <!-- Success Message -->
-        <div id="successMessage" style="display:none;">
+        <div id="successMessage" style="display: none;">
             ✅ Thank you! You have been signed up successfully.
         </div>
     </div>
