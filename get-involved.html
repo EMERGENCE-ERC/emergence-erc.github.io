@@ -88,18 +88,28 @@
     display: flex;
     gap: 10px;
     flex: 1;
-    min-width: 300px;
-    max-width: 680px;
+    min-width: 0;
 }
 
-input {
-    width: 320px;
-    padding: 12px 14px;
+input[name="qname"] {
+    width: 400px;           /* Wider - fits the full placeholder */
+    padding: 11px 14px;
     border: 1px solid #555;
     border-radius: 4px;
     background: #222;
     color: #fff;
-    font-size: 16px;
+    font-size: 15.5px;
+    box-sizing: border-box;
+}
+
+input[name="qemail"] {
+    width: 260px;           /* Narrower to compensate */
+    padding: 11px 14px;
+    border: 1px solid #555;
+    border-radius: 4px;
+    background: #222;
+    color: #fff;
+    font-size: 15.5px;
     box-sizing: border-box;
 }
 
