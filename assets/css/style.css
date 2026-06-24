@@ -12,6 +12,10 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
 }
 
+ul {
+  padding-left: 20px !important;
+}
+
 /* ====================== STYLE relating to navbar ====================== */
 
 .main-content {
@@ -112,7 +116,7 @@ div[id] {
 /!- this is to make the list of advisory board in 2 columns-!/
 @media (min-width: 768px) {
     .involve-grid {                   
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr !important;
         gap: 12px 40px;
     }
 }
