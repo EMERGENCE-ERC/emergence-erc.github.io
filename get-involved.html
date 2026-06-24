@@ -158,33 +158,17 @@ input::placeholder {
 </head>
 
 <script>
-    const form = document.getElementById('qualtricsForm');
-    const successMsg = document.getElementById('successMessage');
-    const submitBtn = document.getElementById('submitBtn');
+function submitHandler() {
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true;
+    btn.textContent = 'Submitting...';
 
-    form.addEventListener('submit', function() {
-        // Copy visible input values to hidden fields that Qualtrics expects
-        const hiddenName = document.createElement('input');
-        hiddenName.type = 'hidden';
-        hiddenName.name = 'qname';
-        hiddenName.value = document.getElementById('qname_input').value.trim();
-        form.appendChild(hiddenName);
-
-        const hiddenEmail = document.createElement('input');
-        hiddenEmail.type = 'hidden';
-        hiddenEmail.name = 'qemail';
-        hiddenEmail.value = document.getElementById('qemail_input').value.trim();
-        form.appendChild(hiddenEmail);
-
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Submitting...';
-
-        // Show success message after a short delay
-        setTimeout(() => {
-            form.style.display = 'none';
-            successMsg.style.display = 'block';
-        }, 1000);
-    });
+    // Show success message after a short delay
+    setTimeout(() => {
+        document.getElementById('qualtricsForm').style.display = 'none';
+        document.getElementById('successMessage').style.display = 'block';
+    }, 900);
+}
 </script>
     
 <body>
@@ -435,21 +419,15 @@ input::placeholder {
         <form id="qualtricsForm" 
               action="https://leidenuniv.eu.qualtrics.com/jfe/form/SV_3UHEonVobRJYp0O" 
               method="POST" 
-              target="qualtricsIframe">
+              target="qualtricsIframe"
+              onsubmit="submitHandler()">
 
             <div class="signup-container">
                 <div class="label">Sign up for news and updates</div>
                 
                 <div class="inputs">
-                    <input type="text" 
-                           id="qname_input"
-                           placeholder="Firstname Lastname (Institution)" 
-                           required>
-                    
-                    <input type="email" 
-                           id="qemail_input"
-                           placeholder="email@address.com" 
-                           required>
+                    <input type="text" id="qname_input" placeholder="Firstname Lastname (Institution)" required>
+                    <input type="email" id="qemail_input" placeholder="email@address.com" required>
                 </div>
 
                 <button type="submit" class="submit-btn" id="submitBtn">Submit</button>
@@ -457,15 +435,15 @@ input::placeholder {
 
             <div class="gdpr">
                 Your data will be processed in accordance with our 
-                <a href="https://www.universiteitleiden.nl/en/privacy" target="_blank" rel="noopener">privacy policy</a> (GDPR compliant).
+                <a href="https://www.universiteitleiden.nl/en/privacy" target="_blank">privacy policy</a> (GDPR compliant).
             </div>
         </form>
 
         <!-- Hidden iframe -->
-        <iframe name="qualtricsIframe" style="display: none; width:0; height:0; border:none;"></iframe>
+        <iframe name="qualtricsIframe" style="display:none; width:0; height:0; border:0;"></iframe>
 
         <!-- Success Message -->
-        <div id="successMessage" style="display: none;">
+        <div id="successMessage" style="display:none; margin-top:12px; color:#4ade80; font-weight:500;">
             ✅ Thank you! You have been signed up successfully.
         </div>
     </div>
