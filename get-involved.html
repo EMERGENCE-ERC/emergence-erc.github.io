@@ -163,11 +163,25 @@ function submitHandler() {
     btn.disabled = true;
     btn.textContent = 'Submitting...';
 
-    // Show success message after a short delay
+    const form = document.getElementById('qualtricsForm');
+
+    // Add hidden fields with correct Qualtrics QIDs
+    const nameField = document.createElement('input');
+    nameField.type = 'hidden';
+    nameField.name = 'QID3';
+    nameField.value = document.getElementById('qname_input').value.trim();
+    form.appendChild(nameField);
+
+    const emailField = document.createElement('input');
+    emailField.type = 'hidden';
+    emailField.name = 'QID4';        
+    emailField.value = document.getElementById('qemail_input').value.trim();
+    form.appendChild(emailField);
+
     setTimeout(() => {
-        document.getElementById('qualtricsForm').style.display = 'none';
+        form.style.display = 'none';
         document.getElementById('successMessage').style.display = 'block';
-    }, 900);
+    }, 1000);
 }
 </script>
     
@@ -426,8 +440,8 @@ function submitHandler() {
                 <div class="label">Sign up for news and updates</div>
                 
                 <div class="inputs">
-                    <input type="text" id="qname_input" name="QID3" placeholder="Firstname Lastname (Institution)" required>
-                    <input type="email" id="qemail_input" name="QID4" placeholder="email@address.com" required>
+                    <input type="text" id="qname_input" placeholder="Firstname Lastname (Institution)" required>
+                    <input type="email" id="qemail_input" placeholder="email@address.com" required>
                 </div>
 
                 <button type="submit" class="submit-btn" id="submitBtn">Submit</button>
