@@ -19,22 +19,32 @@ ul {
 /* ====================== STYLE relating to navbar ====================== */
 
 .main-content {
-    padding-top: 70px;     /* Adjust this number (in px) until top menu does not cover main content */
+    padding-top: 80px;     /* Adjust this number (in px) until top menu does not cover main content */
 }
 
 .navbar {
     background-color: #000000 !important;
     border-bottom: 1px solid #333333;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;   /* or space-around */
+    padding: 0 3%;
+    min-height: 79px;
 }
 
 .logo {
-    max-height: 65px;
+    max-height: 75px;
     width: auto;
 }
 
 .nav-link {
     color: #ffffff !important;
     font-weight: 500;
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 .nav-link:hover {
@@ -57,8 +67,8 @@ div[id] {
 
 .hero {
     background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), 
-                url('https://emergence.leiden.edu/assets/images/main.fog.jpg') center/cover no-repeat;   /* old fog photo was https://picsum.photos/id/1015/2000/1200 */
-    margin-top: 70px;
+                url('https://emergence.leiden.edu/assets/images/main.fog.jpg') center/cover no-repeat;
+    margin-top: 80px;
 }
 
 /* ==================== TEAM PAGE STYLES ==================== */
