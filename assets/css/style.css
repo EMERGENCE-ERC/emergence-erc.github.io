@@ -57,7 +57,7 @@ div[id] {
 
 .hero {
     background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), 
-                url('assets/images/main.fog.jpg') center/cover no-repeat;   /* old fog photo was https://picsum.photos/id/1015/2000/1200 */
+                url('https://emergence.leiden.edu/assets/images/main.fog.jpg') center/cover no-repeat;   /* old fog photo was https://picsum.photos/id/1015/2000/1200 */
     margin-top: 70px;
 }
 
