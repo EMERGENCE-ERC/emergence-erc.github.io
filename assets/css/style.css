@@ -18,10 +18,6 @@ ul {
 
 /* ====================== STYLE relating to navbar ====================== */
 
-.main-content {
-    padding-top: 80px;     /* Adjust this number (in px) until top menu does not cover main content */
-}
-
 .navbar {
     background-color: #000000 !important;
     border-bottom: 1px solid #333333;
@@ -66,7 +62,7 @@ div[id] {
 /* ====================== STYLE Index page ====================== */
 
 .hero {
-    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), 
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), 
                 url('https://emergence.leiden.edu/assets/images/main.fog.jpg') center/cover no-repeat;
     margin-top: 80px;
 }
