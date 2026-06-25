@@ -5,6 +5,7 @@ body {
     color: #ffffff;
     font-family: "Bookman Old Style", Georgia, "Times New Roman", serif;
     line-height: 1.6;
+    padding-top: 80px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -64,7 +65,6 @@ div[id] {
 .hero {
     background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), 
                 url('https://emergence.leiden.edu/assets/images/main.fog.jpg') center/cover no-repeat;
-    margin-top: 80px;
 }
 
 /* ==================== TEAM PAGE STYLES ==================== */
