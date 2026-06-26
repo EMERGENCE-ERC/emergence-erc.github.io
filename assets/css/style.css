@@ -54,6 +54,7 @@ a:hover {
 
 .navbar-nav {
     display: flex !important;
+    justify-content: space-around;
     gap: 1.5vw;
     margin: 0 !important;
     flex-grow: 1;
