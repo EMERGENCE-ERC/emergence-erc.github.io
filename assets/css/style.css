@@ -32,9 +32,17 @@ a:hover {
     border-bottom: 1px solid #333333;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;   /* or space-around */
+    justify-content: space-between;
     padding: 0 3%;
     min-height: 79px;
+}
+
+.navbar .container-fluid {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .logo {
