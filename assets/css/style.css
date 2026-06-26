@@ -32,17 +32,18 @@ a:hover {
     border-bottom: 1px solid #333333;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 0 3%;
+    justify-content: space-around;
+    padding: 0;
     min-height: 79px;
 }
 
 .navbar .container-fluid {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     padding-left: 0;
     padding-right: 0;
+    width: 100%;
 }
 
 .logo {
@@ -50,14 +51,18 @@ a:hover {
     width: auto;
 }
 
+.navbar-nav {
+    display: flex !important;
+    gap: 2rem;
+    margin: 0 !important;
+}
+
 .nav-link {
     color: #ffffff !important;
     font-weight: 500;
-    display: flex;
-    gap: 2rem;
-    list-style: none;
+    display: block !important;
+    padding: 0 !important;
     margin: 0;
-    padding: 0;
 }
 
 .nav-link:hover {
