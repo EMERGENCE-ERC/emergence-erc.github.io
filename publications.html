@@ -147,10 +147,12 @@
                     if (!row.Title) return;
 
                     let linkHTML = '';
+                    const isOpenAccess = row['Open Access'] && row['Open Access'].toLowerCase() === 'yes';
                     if (row.Link) {
-                        const linkText = (row['Open Access'] && row['Open Access'].toLowerCase() === 'yes') 
-                            ? 'Open Access' : 'Link';
-                        linkHTML = `<a href="${row.Link}" target="_blank" class="text-info pub-link">${linkText}</a>`;
+                        const linkText = isOpenAccess ? 'Open Access' : 'Link';
+                        const linkColor = isOpenAccess ? '#FFD700' : '';
+                        const colorStyle = linkColor ? `style="color: ${linkColor};"` : 'class="text-info"';
+                        linkHTML = `<a href="${row.Link}" target="_blank" ${colorStyle} class="pub-link">${linkText}</a>`;
                     }
 
                     let imageHTML = '';
@@ -174,10 +176,8 @@
                                     <div class="flex-grow-1">
                                         <h5 class="pub-title">${row.Title}</h5>
                                         <p class="author-line mb-1">${row.Author} • ${row.Type}</p>
-                                        <p class="pub-journal mb-0">
-                                            ${row['Published in'] || ''}
-                                            ${row.Link ? ` • ${linkHTML}` : ''}
-                                        </p>
+                                        <p class="pub-journal mb-0">${row['Published in'] || ''}</p>
+                                        ${linkHTML ? `<p class="pub-journal mb-0 mt-2">${linkHTML}</p>` : ''}
                                     </div>
                                 </div>
                             </div>
