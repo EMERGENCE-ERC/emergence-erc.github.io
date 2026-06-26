@@ -129,6 +129,41 @@ div[id] {
 
 /* ==================== TEAM PAGE STYLES ==================== */
 
+.team-tile {
+   position: relative;
+   width: 100%;
+   padding-top: 125%; /* Rectangular shape */
+   overflow: hidden;
+  border-radius: 12px;
+  cursor: pointer;
+   transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+       
+.team-tile:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 30px rgba(0, 212, 255, 0.25);
+}
+
+.team-tile img {
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+}
+
+.team-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.92));
+    color: white;
+    padding: 20px 15px 15px;
+    text-align: center;
+}
+
 .team-overlay h5 {
     font-family: "Bookman Old Style", Georgia, "Times New Roman", serif;
     font-size: 1.35rem;
