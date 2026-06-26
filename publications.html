@@ -100,7 +100,7 @@
                     let linkHTML = '';
                     const isOpenAccess = row['Open Access'] && row['Open Access'].toLowerCase() === 'yes';
                     if (row.Link) {
-                        const linkText = isOpenAccess ? 'Open Access' : 'Link';
+                        const linkText = isOpenAccess ? 'Link to Open Access publication' : 'Link to publication';
                         const linkColor = isOpenAccess ? '#FFD700' : '';
                         const colorStyle = linkColor ? `style="color: ${linkColor};"` : 'class="text-info"';
                         linkHTML = `<a href="${row.Link}" target="_blank" ${colorStyle} class="pub-link">${linkText}</a>`;
