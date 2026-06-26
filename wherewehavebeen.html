@@ -92,12 +92,14 @@
 
 <!================ ALL SCRIPTS GO DOWN HERE ==============!>
 
-            <!==== SCRIPT SOURCES ===-!>
+            <!==== SCRIPT SOURCES ====!>
         
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+            <!==== scripts for leaflet.js and PapaParse to generate leaflet.js map from csv ====!>
         
     <script>
         const map = L.map('map').setView([52.0, 10], 4);
@@ -175,5 +177,17 @@
         };
     </script>
 
+            <!==== Load Navbar with JavaScript ===-!>
+<script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-placeholder').innerHTML = data;
+            })
+            .catch(error => {
+                console.error('Failed to load navbar:', error);
+            });
+</script>
+        
 </body>
 </html>
