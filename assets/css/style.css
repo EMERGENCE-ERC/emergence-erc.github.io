@@ -17,6 +17,14 @@ ul {
   padding-left: 20px !important;
 }
 
+a {
+    color: #00d4ff;
+}
+
+a:hover {
+    color: #FFD700;
+}
+
 /* ====================== STYLE relating to navbar ====================== */
 
 .navbar {
