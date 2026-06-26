@@ -267,6 +267,68 @@ div[id] {
             text-align: center;
         }
 
+/* ==================== PUBLICATIONS PAGE STYLES ==================== */
+
+        .publication-item {
+            padding: 1.35rem 1.5rem;
+            border-bottom: 1px solid #222;
+            transition: background-color 0.2s ease;
+            border-radius: 6px;
+            height: 100%;
+            margin-bottom: 0;
+            margin-top: 0;
+        }
+        
+        .publication-item:hover {
+            background-color: rgba(0, 180, 216, 0.06);
+        }
+
+        .pub-year {
+            color: #00b4d8;
+            font-weight: 700;
+            min-width: 74px;
+            font-size: 1.13rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .pub-title {
+            color: #ffffff;
+            font-size: 1.17rem;
+            line-height: 1.42;
+            margin-bottom: 0.45rem;
+        }
+
+        .author-line {
+            color: #cccccc;
+            font-size: 0.97rem;
+        }
+
+        .pub-journal {
+            color: #00b4d8;
+            font-weight: 500;
+        }
+
+        .pub-image {
+            width: 120px;
+            max-height: 160px;
+            object-fit: contain;
+            border: 1px solid #333;
+            border-radius: 6px;
+            background-color: #111;
+            flex-shrink: 0;
+        }
+
+        .pub-link { 
+            font-size: 0.95rem; 
+        }
+
+        .left-column {
+            min-width: 110px;
+        }
+        .row.g-4 {
+            --bs-gutter-y: 1.25rem;
+        }
+
 /* ==================== GET INVOLVED PAGE STYLES ==================== */
 
 .involve-tile {
