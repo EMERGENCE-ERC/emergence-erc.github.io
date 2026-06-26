@@ -100,8 +100,11 @@ div[id] {
 
 .main-logo {
     max-height: 300px;
+    max-width: 100%; 
     width: auto;
+    height: auto;
     margin-bottom: 16px;
+    display: block;
     }
 
 .section-header {
