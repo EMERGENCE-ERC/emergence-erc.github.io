@@ -410,6 +410,42 @@ div[id] {
   }
 }
 
+/* ==================== WHERE HAVE WE BEEN PAGE STYLES ==================== */
+
+        #map { height: 680px; border-radius: 12px; }
+        
+        .event-list {
+            max-height: 680px;
+            overflow-y: auto;
+            font-size: 0.85rem;
+        }
+        .event-item {
+            cursor: pointer;
+            transition: all 0.2s;
+            padding: 11px 14px;
+        }
+        .event-item:hover {
+            background-color: #1a1a1a;
+        }
+        .event-title {
+            font-size: 0.96rem;
+            line-height: 1.25;
+        }
+        .legend-item {
+            display: inline-flex;
+            align-items: center;
+            margin-right: 20px;
+            font-size: 0.95rem;
+        }
+        .legend-dot {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            margin-right: 8px;
+            border: 2px solid #fff;
+        }
+
 /* ==================== QUALTRICS CONTACT FORM ==================== */
 
 .qualtrics-container {
