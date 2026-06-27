@@ -102,7 +102,7 @@
   function resizeIframe() {
     const iframe = document.getElementById('qualtrics-iframe');
     if (iframe) {
-      iframe.style.height = "1400px"; // initial height
+      iframe.style.height = "300px"; // initial height
       setTimeout(() => {
         const height = iframe.contentWindow.document.body.scrollHeight + 50; // +50 for safety margin
         iframe.style.height = height + "px";
