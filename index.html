@@ -141,20 +141,14 @@
         </div>
     </section>
     
-    <!-- Footer -->
-    <footer class="py-3 text-center border-top border-secondary mt-5">
-        <div class="container">
-            <p class="mb-0 text-info">© EMERGENCE 2026. All rights reserved.</p>
-        </div>
-    </footer>
+<!-- Footer Placeholder -->
+<div id="footer-placeholder"></div>
 
-<!================ ALL SCRIPTS GO DOWN HERE ==============!>
-
-        <!=== SCRIPT SOURCES ===!>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+             <!==== SCRIPT SOURCES ====!>
     
-            <!==== Load Navbar with JavaScript ===-!>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+            <!==== Load Navbar with JavaScript ====!>
 <script>
         fetch('navbar.html')
             .then(response => response.text())
@@ -166,5 +160,17 @@
             });
 </script>
 
+            <!==== Load Footer with JavaScript ====!>
+<script>
+    fetch('footer.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('footer-placeholder').innerHTML = data;
+        })
+        .catch(error => {
+            console.error('Failed to load footer:', error);
+        });
+</script>
+    
 </body>
 </html>
