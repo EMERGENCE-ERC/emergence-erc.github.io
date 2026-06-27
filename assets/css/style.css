@@ -54,11 +54,20 @@ a:hover {
 
 .navbar-nav {
     display: flex !important;
-    justify-content: space-around;
+    justify-content: flex-start;
     gap: 1.5vw;
     margin: 0 !important;
-    flex-grow: 1;
+    margin-left: auto !important;
     margin-left: 3vw !important;
+}
+
+.navbar-nav {
+    display: flex !important;
+    justify-content: flex-start;     /* Changed from space-around */
+    gap: 1.5vw;
+    margin: 0 !important;
+    margin-left: auto !important;    /* This pushes the whole menu to the right */
+    margin-right: 3vw;               /* Optional: space before buttons */
 }
 
 .nav-link {
