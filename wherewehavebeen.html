@@ -120,7 +120,7 @@
 
             <!==== scripts for leaflet.js and PapaParse to generate leaflet.js map from csv ====!>
         
-    <script>
+<script>
         const map = L.map('map').setView([52.0, 10], 4);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
@@ -178,7 +178,7 @@
 
         function renderEventList() {
             const container = document.getElementById('eventList');
-            container.innerHTML = eventsData.map(item => `
+            container.innerHTML = [...eventsData].reverse().map(item => `
                 <div class="event-item rounded mb-2" onclick="zoomToEvent(${item.index})">
                     <div class="event-title">${item.row['Paper title'] || item.row['Event title']}</div>
                     <small class="text-info">${item.row.Speaker} • ${item.row.Date} • ${item.row.Type}</small><br>
