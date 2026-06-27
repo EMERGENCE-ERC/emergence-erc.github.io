@@ -25,6 +25,19 @@ a:hover {
     color: #FFD700;
 }
 
+.btn-outline-light {
+    background-color: #0066CC !important;
+    color: #ffffff !important;
+    border: 1px solid #0066CC !important;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-light:hover {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    border: 1px solid #ffffff !important;
+}
+
 /* ====================== STYLE relating to navbar ====================== */
 
 .navbar {
