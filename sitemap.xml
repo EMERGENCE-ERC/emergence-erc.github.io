@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>
+    <loc>https://emergence.leiden.edu/</loc>
+    <lastmod>2026-06-28</lastmod>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://emergence.leiden.edu/index.html</loc>
+    <lastmod>2026-06-28</lastmod>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://emergence.leiden.edu/team.html</loc>
+    <lastmod>2026-06-28</lastmod>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://emergence.leiden.edu/publications.html</loc>
+    <lastmod>2026-06-28</lastmod>
+    <priority>0.8</priority>
+  </url>
+
+   <url>
+    <loc>https://emergence.leiden.edu/events.html</loc>
+    <lastmod>2026-06-28</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://emergence.leiden.edu/get-involved.html</loc>
+    <lastmod>2026-06-28</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://emergence.leiden.edu/database.html</loc>
+    <lastmod>2026-06-28</lastmod>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://emergence.leiden.edu/blog.html</loc>
+    <lastmod>2026-06-28</lastmod>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://emergence.leiden.edu/updates.html</loc>
+    <lastmod>2026-06-28</lastmod>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://emergence.leiden.edu/wherewehavebeen.html</loc>
+    <lastmod>2026-06-28</lastmod>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://emergence.leiden.edu/OEB1.html</loc>
+    <lastmod>2026-06-28</lastmod>
+    <priority>0.6</priority>
+  </url>
+
+</urlset>
