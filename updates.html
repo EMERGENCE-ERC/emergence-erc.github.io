@@ -45,18 +45,18 @@
             <h1 class="display-3 fw-bold mb-3"><br>Mailing list</h1>
             <p class="lead fs-3 mb-5">Stay informed about the EMERGENCE project by subscribing to our mailing list. <br><br>
                 Subscribers will receive occassional notifications about:<br><br>
-                Upcoming events<br>
-                New publications<br>
-                Blog posts<br>
-                Updates to the website<br>
-                Other news about the project</p>
+                - Upcoming events<br>
+                - New publications<br>
+                - Blog posts<br>
+                - Updates to the website<br>
+                - Other news about the project</p>
         </div>
     </section>
 
         <!-- Contact form -->
     <section class="py-1">
         <div class="container">
-            <h3 class="text-center mb-0">Subscribe using the form below:</h3>
+            <h3 class="text-center mb-0">Subscribe using the form below (or use <a href="https://leidenuniv.eu.qualtrics.com/jfe/form/SV_3UHEonVobRJYp0O">this link</a>):</h3>
             <div class="row justify-content-center">    
                 <div class="qualtrics-container">
                   <iframe 
@@ -77,58 +77,10 @@
 <!-- Footer Placeholder -->
 <div id="footer-placeholder"></div>
 
-             <!==== SCRIPT SOURCES ====!>
-    
+
+<!==== SCRIPT SOURCES ====!>    
+<script src="assets/js/script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-            <!==== Load Navbar with JavaScript ====!>
-<script>
-        fetch('navbar.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('navbar-placeholder').innerHTML = data;
-            })
-            .catch(error => {
-                console.error('Failed to load navbar:', error);
-            });
-</script>
-
-            <!==== Load Footer with JavaScript ====!>
-<script>
-    fetch('footer.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('footer-placeholder').innerHTML = data;
-        })
-        .catch(error => {
-            console.error('Failed to load footer:', error);
-        });
-</script>
-    
-           <!==== Qualtrics form script ====!>
-<script>
-  // Auto-resize Qualtrics iframe
-  function resizeIframe() {
-    const iframe = document.getElementById('qualtrics-iframe');
-    if (iframe) {
-      iframe.style.height = "300px"; // initial height
-      setTimeout(() => {
-        const height = iframe.contentWindow.document.body.scrollHeight + 50; // +50 for safety margin
-        iframe.style.height = height + "px";
-      }, 800); // small delay to let Qualtrics load
-    }
-  }
-
-  // Run when iframe loads
-  document.getElementById('qualtrics-iframe').onload = resizeIframe;
-
-  // Also listen for messages from Qualtrics (better method)
-  window.addEventListener('message', function(event) {
-    if (event.origin.includes('qualtrics.com') && event.data && event.data.height) {
-      document.getElementById('qualtrics-iframe').style.height = event.data.height + 'px';
-    }
-  });
-</script>
 
 </body>
 </html>
