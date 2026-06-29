@@ -32,7 +32,7 @@ if (footerElement) {
 }
 
 
-/* === QUALTRIX-IFRAME AND RESIZING === */
+/* === QUALTRICS-IFRAME AND RESIZING === */
 
 // Auto-resize Qualtrics iframe
 const iframeElement = document.getElementById('qualtrics-iframe');
