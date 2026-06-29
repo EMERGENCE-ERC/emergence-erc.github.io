@@ -102,7 +102,7 @@ a:hover {
 
 .hero-database {
     background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), 
-         url(',,/images/heroes/hero.database.jpg');
+         url('../images/heroes/hero.database.jpg');
 }
 
 .hero-database::after {
@@ -111,7 +111,7 @@ a:hover {
 
 .hero-involved {
     background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), 
-         url('../assets/images/heroes/hero.involved.jpg');
+         url('../images/heroes/hero.involved.jpg');
 }
 
 .hero-involved::after {
@@ -120,7 +120,7 @@ a:hover {
 
 .hero-mailing {
     background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), 
-         url('../images/heroes/hero.mailing-list.jpg');
+         url('../images/heroes/hero.mailing.jpg');
 }
 
 .hero-mailing::after {
@@ -129,7 +129,7 @@ a:hover {
 
 .hero-where {
     background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), 
-         url(',,/images/heroes/hero.where.jpg');
+         url('../images/heroes/hero.where.jpg');
 }
 
 .hero-where::after {
