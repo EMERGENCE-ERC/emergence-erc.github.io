@@ -38,6 +38,114 @@ a:hover {
     border: 1px solid #ffffff !important;
 }
 
+/* ====================== HERO styles ====================== */
+
+.hero {
+    position: relative;
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), 
+                url('assets/images/heroes/hero.main.jpg') center/cover no-repeat;
+    padding: 30px 0 30px;
+    min-height: 30vh;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    } 
+
+.hero::after {
+    content: "Image: Caspar David Friedrich, 'Der Wanderer über dem Nebelmeer' (c. 1818; Public Domain)";
+    position: absolute;
+    bottom: 5px;               
+    right: 10px;               
+    font-size: 0.75rem;       
+    color: #ffffff;
+    font-family: sans-serif;   
+    pointer-events: none;
+}
+
+/* === HERO for individual pages ===*/
+
+.hero-team {
+    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), 
+         url('assets/images/heroes/hero.team.jpg');
+}
+
+.hero-team::after {
+    content: "Image: Caspar David Friedrich, 'Sonnenuntergang (Brüder)' (c. 1837; Public Domain)";
+}
+
+.hero-blog {
+    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), 
+         url('assets/images/heroes/hero.blog.jpg');
+}
+
+.hero-blog::after {
+    content: "Image: Caspar David Friedrich, 'Kreidefelsen auf Rügen' (1818; Public Domain)";
+}
+
+.hero-events {
+    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), 
+         url('assets/images/heroes/hero.events.jpg');
+}
+
+.hero-events::after {
+    content: "Image: Caspar David Friedrich, 'Mondaufgang am Meer' (1822; Public Domain)";
+}
+
+.hero-publications {
+    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), 
+         url('assets/images/heroes/hero.publications.jpg');
+}
+
+.hero-publications::after {
+    content: "Image: Caspar David Friedrich, 'Morgen im Riesengebirge' (c. 1810-1811; Public Domain)";
+}
+
+.hero-database {
+    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), 
+         url('assets/images/heroes/hero.database.jpg');
+}
+
+.hero-database::after {
+    content: "Image: Caspar David Friedrich, 'Felsenlandschaft im Elbsandsteingebirge' (1822; Public Domain)";
+}
+
+.hero-involved {
+    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), 
+         url('assets/images/heroes/hero.involved.jpg');
+}
+
+.hero-involved::after {
+    content: "Image: Caspar David Friedrich, 'Zwei Männer in Betrachtung des Mondes' (1825-1830; Public Domain)";
+}
+
+.hero-mailing {
+    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), 
+         url('assets/images/heroes/hero.mailing-list.jpg');
+}
+
+.hero-mailing::after {
+    content: "Image: Caspar David Friedrich, 'Mann und Frau in Betrachtung des Mondes' (c. 1824; Public Domain)";
+}
+
+.hero-where {
+    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), 
+         url('assets/images/heroes/hero.where.jpg');
+}
+
+.hero-where::after {
+    content: "Image: Caspar David Friedrich, 'Die Lebensstufen' (1835; Public Domain)";
+}
+
+.hero-OEB1 {
+    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), 
+         url('assets/images/heroes/hero.OEB1.jpg');
+}
+
+.hero-OEB1::after {
+    content: "Image: Caspar David Friedrich, 'Der Mönch am Meer' (1808-1810; Public Domain)";
+}
+
+
 /* ====================== STYLE relating to navbar ====================== */
 
 .navbar {
@@ -100,28 +208,6 @@ div[id] {
 }
 
 /* ====================== STYLE Index page ====================== */
-
-.hero {
-    position: relative;
-    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), 
-                url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Caspar_David_Friedrich_-_Abtei_im_Eichwald_-_Google_Art_Project.jpg/1920px-Caspar_David_Friedrich_-_Abtei_im_Eichwald_-_Google_Art_Project.jpg') center/cover no-repeat;
-    padding: 30px 0 30px;
-    min-height: 30vh;
-    display: flex;
-    flex-direction: column; 
-    align-items: center;
-    } 
-
-.hero::after {
-    content: "Image: Caspar David Friedrich, 'Abtei im Eichwald' (c. 1809-1810; Google Art Project)";
-    position: absolute;
-    bottom: 5px;               
-    right: 10px;               
-    font-size: 0.75rem;       
-    color: #ffffff;
-    font-family: sans-serif;   
-    pointer-events: none;
-}
 
 .main-logo {
     max-height: 300px;
