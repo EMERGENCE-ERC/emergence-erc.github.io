@@ -104,7 +104,7 @@ div[id] {
 .hero {
     position: relative;
     background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), 
-                url('https://upload.wikimedia.org/wikipedia/commons/a/af/Caspar_David_Friedrich_-_Wanderer_above_the_Sea_of_Fog.jpeg') center/cover no-repeat;
+                url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Caspar_David_Friedrich_-_Abtei_im_Eichwald_-_Google_Art_Project.jpg/1920px-Caspar_David_Friedrich_-_Abtei_im_Eichwald_-_Google_Art_Project.jpg') center/cover no-repeat;
     padding: 30px 0 30px;
     min-height: 30vh;
     display: flex;
@@ -113,7 +113,7 @@ div[id] {
     } 
 
 .hero::after {
-    content: "Image: Caspar David Friedrich, 'Der Wanderer über dem Nebelmeer' (c. 1818; Public Domain)";
+    content: "Image: Caspar David Friedrich, 'Abtei im Eichwald' (c. 1809-1810; Google Art Project)";
     position: absolute;
     bottom: 5px;               
     right: 10px;               
