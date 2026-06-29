@@ -102,14 +102,26 @@ div[id] {
 /* ====================== STYLE Index page ====================== */
 
 .hero {
+    position: relative;
     background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), 
-                url('https://upload.wikimedia.org/wikipedia/commons/0/0b/Friedrich%2C_Caspar_David_-_Morgen_im_Riesengebirge.jpg') center/cover no-repeat;
+                url('https://upload.wikimedia.org/wikipedia/commons/f/f6/Caspar_David_Friedrich_-_Riesengebirge_Landscape_with_Rising_Fog_-_WGA8257.jpg') center/cover no-repeat;
     padding: 30px 0 30px;
     min-height: 30vh;
     display: flex;
     flex-direction: column; 
     align-items: center;
     } 
+
+.hero::after {
+    content: "Image: Caspar David Friedrich, <i>Riesengebirgslandschaft mit aufsteigendem Nebel</i> (1818; Public Domain)"; /* Type your text here */
+    position: absolute;
+    bottom: 5px;               
+    right: 10px;               
+    font-size: 0.5rem;       
+    color: #ffffff;
+    font-family: sans-serif;   
+    pointer-events: none;
+}
 
 .main-logo {
     max-height: 300px;
