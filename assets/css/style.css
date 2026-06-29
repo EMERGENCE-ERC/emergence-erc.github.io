@@ -43,7 +43,7 @@ a:hover {
 .hero {
     position: relative;
     background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), 
-                url('assets/images/heroes/hero.main.jpg') center/cover no-repeat;
+                url('../images/heroes/hero.main.jpg') center/cover no-repeat;
     padding: 30px 0 30px;
     min-height: 30vh;
     display: flex;
@@ -66,7 +66,7 @@ a:hover {
 
 .hero-team {
     background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), 
-         url('assets/images/heroes/hero.team.jpg');
+         url('../images/heroes/hero.team.jpg');
 }
 
 .hero-team::after {
@@ -75,7 +75,7 @@ a:hover {
 
 .hero-blog {
     background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), 
-         url('assets/images/heroes/hero.blog.jpg');
+         url('../images/heroes/hero.blog.jpg');
 }
 
 .hero-blog::after {
@@ -84,7 +84,7 @@ a:hover {
 
 .hero-events {
     background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), 
-         url('assets/images/heroes/hero.events.jpg');
+         url('../images/heroes/hero.events.jpg');
 }
 
 .hero-events::after {
@@ -93,7 +93,7 @@ a:hover {
 
 .hero-publications {
     background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), 
-         url('assets/images/heroes/hero.publications.jpg');
+         url('../images/heroes/hero.publications.jpg');
 }
 
 .hero-publications::after {
@@ -102,7 +102,7 @@ a:hover {
 
 .hero-database {
     background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), 
-         url('assets/images/heroes/hero.database.jpg');
+         url(',,/images/heroes/hero.database.jpg');
 }
 
 .hero-database::after {
@@ -111,7 +111,7 @@ a:hover {
 
 .hero-involved {
     background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), 
-         url('assets/images/heroes/hero.involved.jpg');
+         url('../assets/images/heroes/hero.involved.jpg');
 }
 
 .hero-involved::after {
@@ -120,7 +120,7 @@ a:hover {
 
 .hero-mailing {
     background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), 
-         url('assets/images/heroes/hero.mailing-list.jpg');
+         url('../images/heroes/hero.mailing-list.jpg');
 }
 
 .hero-mailing::after {
@@ -129,7 +129,7 @@ a:hover {
 
 .hero-where {
     background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), 
-         url('assets/images/heroes/hero.where.jpg');
+         url(',,/images/heroes/hero.where.jpg');
 }
 
 .hero-where::after {
@@ -138,7 +138,7 @@ a:hover {
 
 .hero-OEB1 {
     background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), 
-         url('assets/images/heroes/hero.OEB1.jpg');
+         url('../images/heroes/hero.OEB1.jpg');
 }
 
 .hero-OEB1::after {
