@@ -70,7 +70,7 @@ a:hover {
 }
 
 .hero-team::after {
-    content: "Image: Caspar David Friedrich, 'Der Mittag' (1821-1822; Public Domain)";
+    content: "Image: Caspar David Friedrich, 'Das Riesengebirge' (1830-1835; Public Domain)";
 }
 
 .hero-blog {
@@ -115,7 +115,7 @@ a:hover {
 }
 
 .hero-involved::after {
-    content: "Image: Caspar David Friedrich, 'Der Abend' (1821-1822; Public Domain)";
+    content: "Image: Caspar David Friedrich, 'Riesengebirgslandschaft' (1835; Public Domain)";
 }
 
 .hero-mailing {
@@ -124,7 +124,7 @@ a:hover {
 }
 
 .hero-mailing::after {
-    content: "Image: Caspar David Friedrich, 'Der Nachmittag' (1821-1822; Public Domain)";
+    content: "Image: Caspar David Friedrich, 'Klosterruine Eldena und Riesengebirge' (1830-1834; Public Domain)";
 }
 
 .hero-where {
