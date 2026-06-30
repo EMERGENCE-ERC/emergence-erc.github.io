@@ -52,7 +52,7 @@ a:hover {
     } 
 
 .hero::after {
-    content: "Image: Caspar David Friedrich, 'Der Wanderer über dem Nebelmeer' (c. 1818; Public Domain)";
+    content: "Image: Caspar David Friedrich, 'Morgen im Gebirge' (c. 1823; Public Domain)";
     position: absolute;
     bottom: 5px;               
     right: 10px;               
@@ -70,7 +70,7 @@ a:hover {
 }
 
 .hero-team::after {
-    content: "Image: Caspar David Friedrich, 'Sonnenuntergang (Brüder)' (c. 1837; Public Domain)";
+    content: "Image: Caspar David Friedrich, 'Der Mittag' (1821-1822; Public Domain)";
 }
 
 .hero-blog {
@@ -79,7 +79,7 @@ a:hover {
 }
 
 .hero-blog::after {
-    content: "Image: Caspar David Friedrich, 'Kreidefelsen auf Rügen' (1818; Public Domain)";
+    content: "Image: Caspar David Friedrich, 'Böhmische Landschaft mit dem Milleschauer' (1808; Public Domain)";
 }
 
 .hero-events {
@@ -106,7 +106,7 @@ a:hover {
 }
 
 .hero-database::after {
-    content: "Image: Caspar David Friedrich, 'Felsenlandschaft im Elbsandsteingebirge' (1822; Public Domain)";
+    content: "Image: Caspar David Friedrich, 'Erinnerungen an das Riesengebirge' (c. 1835; Public Domain)";
 }
 
 .hero-involved {
@@ -115,7 +115,7 @@ a:hover {
 }
 
 .hero-involved::after {
-    content: "Image: Caspar David Friedrich, 'Zwei Männer in Betrachtung des Mondes' (1825-1830; Public Domain)";
+    content: "Image: Caspar David Friedrich, 'Der Abend' (1821-1822; Public Domain)";
 }
 
 .hero-mailing {
@@ -124,7 +124,7 @@ a:hover {
 }
 
 .hero-mailing::after {
-    content: "Image: Caspar David Friedrich, 'Mann und Frau in Betrachtung des Mondes' (c. 1824; Public Domain)";
+    content: "Image: Caspar David Friedrich, 'Der Nachmittag' (1821-1822; Public Domain)";
 }
 
 .hero-where {
@@ -142,7 +142,7 @@ a:hover {
 }
 
 .hero-OEB1::after {
-    content: "Image: Caspar David Friedrich, 'Der Mönch am Meer' (1808-1810; Public Domain)";
+    content: "Image: Caspar David Friedrich, 'Der Morgen' (1821-1822; Public Domain)";
 }
 
 
