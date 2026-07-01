@@ -43,8 +43,8 @@ a:hover {
 .hero {
     position: relative;
     background: linear-gradient(
-                                    rgba(0,0,0,0.6) 0%,
-                                    rgba(0,0,0,0.1) 25%,
+                                    rgba(0,0,0,0.65) 0%,
+                                    rgba(0,0,0,0.2) 30%,
                                     rgba(0,0,0,0.01) 50%,
                                     rgba(0,0,0,0.1) 75%,
                                     rgba(0,0,0,0.6) 100%
