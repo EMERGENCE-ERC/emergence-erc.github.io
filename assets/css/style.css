@@ -228,7 +228,7 @@ div[id] {
     width: auto;
     height: auto;
     display: block;
-    margin: 0 auto 16px;
+    margin: auto;
     }
 
 .section-header {
