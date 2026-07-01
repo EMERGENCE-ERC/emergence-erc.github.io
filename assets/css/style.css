@@ -50,7 +50,7 @@ a:hover {
                                     rgba(0,0,0,0.6) 100%
                                 ),
                 url('../images/heroes/hero.main.jpg') center/cover no-repeat;
-    padding: 40px 0 30px;
+    padding: 45px 0 30px;
     min-height: 35vh;
     display: flex;
     flex-direction: column; 
