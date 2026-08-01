@@ -61,28 +61,10 @@
                     <!-- Legend under the map -->
                     <div class="text-center mt-3">
                         <div class="legend d-inline-flex flex-wrap justify-content-center gap-4 bg-dark p-3 rounded">
-                            <div class="legend-item text-white"><span class="legend-dot" style="background:#ffd700"></span> Keynote <span class="badge bg-light text-dark ms-2" id="count-keynote">0</span></div>
-                            <div class="legend-item text-white"><span class="legend-dot" style="background:#00b4d8"></span> Invited Lecture <span class="badge bg-light text-dark ms-2" id="count-invited">0</span></div>
-                            <div class="legend-item text-white"><span class="legend-dot" style="background:#28a745"></span> Conference Presentation <span class="badge bg-light text-dark ms-2" id="count-conference">0</span></div>
-                            <div class="legend-item text-white"><span class="legend-dot" style="background:#ff7f0e"></span> Conference Roundtable <span class="badge bg-light text-dark ms-2" id="count-roundtable">0</span></div>
-                        </div>
-
-                        <!-- Filters line under legend -->
-                        <div class="filters-line mt-3">
-                            <div class="d-flex justify-content-center gap-3">
-                                <select id="filterType" class="form-select form-select-sm" style="width:220px;">
-                                    <option value="All">All types</option>
-                                    <option value="Keynote">Keynote</option>
-                                    <option value="Invited lecture">Invited lecture</option>
-                                    <option value="Conference presentation">Conference presentation</option>
-                                    <option value="Conference roundtable">Conference roundtable</option>
-                                </select>
-
-                                <select id="filterSpeaker" class="form-select form-select-sm" style="width:320px;">
-                                    <option value="All">All speakers</option>
-                                    <!-- speaker options populated dynamically -->
-                                </select>
-                            </div>
+                            <div class="legend-item"><span class="legend-dot" style="background:#ffd700"></span> Keynote</div>
+                            <div class="legend-item"><span class="legend-dot" style="background:#00b4d8"></span> Invited Lecture</div>
+                            <div class="legend-item"><span class="legend-dot" style="background:#28a745"></span> Conference Presentation</div>
+                            <div class="legend-item"><span class="legend-dot" style="background:#ff7f0e"></span> Conference Roundtable</div>
                         </div>
                     </div>
                 </div>
@@ -146,16 +128,12 @@
                         <small>${row['Event title']} • ${row.Date}</small>
                     `);
 
-                    // parse speakers: handle multiple speakers separated by '&' or ' and '\n                    const speakers = (row.Speaker || '').split(/\s*&\s*|\s+and\s+/i).map(s => s.trim()).filter(Boolean);
-                    const typeNorm = (row.Type || '').trim();
-
                     markers.addLayer(marker);
-                    eventsData.push({row, marker, originalIndex: index, type: typeNorm, speakers});
+                    eventsData.push({row, marker, index});
                 });
 
                 map.addLayer(markers);
-                populateSpeakerFilter();
-                applyFilters();
+                renderEventList();
             }
         });
 
@@ -169,83 +147,19 @@
             }
         }
 
-        function populateSpeakerFilter() {
-            const speakerSet = new Set();
-            eventsData.forEach(item => {
-                item.speakers.forEach(s => speakerSet.add(s));
-            });
-
-            const speakerArray = Array.from(speakerSet).sort((a,b) => a.localeCompare(b));
-            const select = document.getElementById('filterSpeaker');
-            // keep the default "All"
-            speakerArray.forEach(sp => {
-                const opt = document.createElement('option');
-                opt.value = sp;
-                opt.textContent = sp;
-                select.appendChild(opt);
-            });
-
-            // attach event listeners
-            document.getElementById('filterType').addEventListener('change', applyFilters);
-            document.getElementById('filterSpeaker').addEventListener('change', applyFilters);
-        }
-
-        function applyFilters() {
-            const typeFilter = document.getElementById('filterType').value;
-            const speakerFilter = document.getElementById('filterSpeaker').value;
-
-            // clear markers and add matching ones
-            markers.clearLayers();
-            const filtered = eventsData.filter(item => {
-                const typeMatch = (typeFilter === 'All') || (item.type === typeFilter);
-                const speakerMatch = (speakerFilter === 'All') || (item.speakers.includes(speakerFilter));
-                return typeMatch && speakerMatch;
-            });
-
-            filtered.forEach(item => markers.addLayer(item.marker));
-
-            updateLegendTotals(filtered);
-            renderEventList(filtered);
-        }
-
-        function updateLegendTotals(filteredItems) {
-            // compute counts per type for the currently filtered set
-            const counts = {
-                'Keynote': 0,
-                'Invited lecture': 0,
-                'Conference presentation': 0,
-                'Conference roundtable': 0
-            };
-            filteredItems.forEach(it => {
-                if (counts.hasOwnProperty(it.type)) counts[it.type]++;
-            });
-
-            document.getElementById('count-keynote').textContent = counts['Keynote'] || 0;
-            document.getElementById('count-invited').textContent = counts['Invited lecture'] || 0;
-            document.getElementById('count-conference').textContent = counts['Conference presentation'] || 0;
-            document.getElementById('count-roundtable').textContent = counts['Conference roundtable'] || 0;
-        }
-
-        function renderEventList(filteredItems) {
+        function renderEventList() {
             const container = document.getElementById('eventList');
-            const items = (filteredItems || eventsData).slice();
-            // show newest first, assuming CSV is chronological
-            container.innerHTML = items.reverse().map(item => `
-                <div class="event-item rounded mb-2" onclick="zoomToEvent(${item.originalIndex})">
+            container.innerHTML = [...eventsData].reverse().map(item => `
+                <div class="event-item rounded mb-2" onclick="zoomToEvent(${item.index})">
                     <div class="event-title">${item.row['Paper title'] || item.row['Event title']}</div>
                     <small class="text-info">${item.row.Speaker} • ${item.row.Date} • ${item.row.Type}</small><br>
                     <small><em>${item.row['Event title']}</em></small>
                 </div>
             `).join('');
-
-            if (!container.innerHTML) {
-                container.innerHTML = '<div class="text-muted">No presentations match the selected filters.</div>';
-            }
         }
 
         window.zoomToEvent = function(index) {
-            // index corresponds to the originalIndex saved on eventsData entries
-            const item = eventsData.find(it => it.originalIndex === index);
+            const item = eventsData[index];
             if (item && item.marker) {
                 map.flyTo(item.marker.getLatLng(), 8);
                 item.marker.openPopup();
