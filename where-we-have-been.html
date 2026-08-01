@@ -149,7 +149,6 @@
                 const type = (row.Type || '').trim();
                 const color = getMarkerColor(type);
 
-                // Handle multiple speakers (separated by & or "and")
                 const speakers = (row.Speaker || '')
                     .split(/\s*&\s*|\s+and\s+/i)
                     .map(s => s.trim())
@@ -170,12 +169,20 @@
 
                 markers.addLayer(marker);
 
+                const eventKey = [
+                            (row['Paper title'] || row['Event title'] || '').trim(),
+                            (row.Speaker || '').trim(),
+                            (row.Date || '').trim(),
+                            type
+                ].join('|||');
+
                 eventsData.push({
-                    row,
-                    marker,
-                    originalIndex: index,
-                    type: type,
-                    speakers: speakers
+                            row,
+                            marker,
+                            originalIndex: index,
+                            type: type,
+                            speakers: speakers,
+                            eventKey: eventKey          
                 });
             });
 
@@ -213,22 +220,35 @@
     }
 
     function applyFilters() {
-        const typeFilter = document.getElementById('filterType').value;
-        const speakerFilter = document.getElementById('filterSpeaker').value;
+    const typeFilter = document.getElementById('filterType').value;
+    const speakerFilter = document.getElementById('filterSpeaker').value;
 
-        markers.clearLayers();
+    markers.clearLayers();
 
-        const filtered = eventsData.filter(item => {
-            const typeMatch = (typeFilter === 'All') || (item.type === typeFilter);
-            const speakerMatch = (speakerFilter === 'All') || (item.speakers.includes(speakerFilter));
-            return typeMatch && speakerMatch;
-        });
+    // First filter by type and speaker
+    const filtered = eventsData.filter(item => {
+        const typeMatch = (typeFilter === 'All') || (item.type === typeFilter);
+        const speakerMatch = (speakerFilter === 'All') || (item.speakers.includes(speakerFilter));
+        return typeMatch && speakerMatch;
+    });
 
-        filtered.forEach(item => markers.addLayer(item.marker));
+    // Show markers for all matching rows (so both locations still appear on the map)
+    filtered.forEach(item => markers.addLayer(item.marker));
 
-        updateLegendCounts(filtered);
-        renderEventList(filtered);
-    }
+    // For counts and the list → keep only unique events
+    const uniqueEvents = [];
+    const seenKeys = new Set();
+
+    filtered.forEach(item => {
+        if (!seenKeys.has(item.eventKey)) {
+            seenKeys.add(item.eventKey);
+            uniqueEvents.push(item);
+        }
+    });
+
+    updateLegendCounts(uniqueEvents);
+    renderEventList(uniqueEvents);
+}
 
     function updateLegendCounts(filteredItems) {
         const counts = {
