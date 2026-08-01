@@ -59,20 +59,47 @@
                     <div id="map"></div>
                     
                     <!-- Legend under the map -->
-                    <div class="text-center mt-3">
-                        <div class="legend d-inline-flex flex-wrap justify-content-center gap-4 bg-dark p-3 rounded">
-                            <div class="legend-item"><span class="legend-dot" style="background:#ffd700"></span> Keynote</div>
-                            <div class="legend-item"><span class="legend-dot" style="background:#00b4d8"></span> Invited Lecture</div>
-                            <div class="legend-item"><span class="legend-dot" style="background:#28a745"></span> Conference Presentation</div>
-                            <div class="legend-item"><span class="legend-dot" style="background:#ff7f0e"></span> Conference Roundtable</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-lg-4">
-                    <h5 class="mb-3">All Presentations</h5>
-                    <div class="event-list bg-dark p-3 rounded" id="eventList"></div>
-                </div>
+<div class="text-center mt-3">
+    <div class="legend d-inline-flex flex-wrap justify-content-center gap-4 bg-dark p-3 rounded">
+        <div class="legend-item text-white">
+            <span class="legend-dot" style="background:#ffd700"></span> 
+            Keynote 
+            <span class="badge bg-light text-dark ms-2" id="count-keynote">0</span>
+        </div>
+        <div class="legend-item text-white">
+            <span class="legend-dot" style="background:#00b4d8"></span> 
+            Invited Lecture 
+            <span class="badge bg-light text-dark ms-2" id="count-invited">0</span>
+        </div>
+        <div class="legend-item text-white">
+            <span class="legend-dot" style="background:#28a745"></span> 
+            Conference Presentation 
+            <span class="badge bg-light text-dark ms-2" id="count-conference">0</span>
+        </div>
+        <div class="legend-item text-white">
+            <span class="legend-dot" style="background:#ff7f0e"></span> 
+            Conference Roundtable 
+            <span class="badge bg-light text-dark ms-2" id="count-roundtable">0</span>
+        </div>
+    </div>
+
+    <!-- Filters -->
+    <div class="d-flex justify-content-center gap-3 mt-3 flex-wrap">
+        <select id="filterType" class="form-select form-select-sm" style="width: 220px;">
+            <option value="All">All types</option>
+            <option value="Keynote">Keynote</option>
+            <option value="Invited lecture">Invited lecture</option>
+            <option value="Conference presentation">Conference presentation</option>
+            <option value="Conference roundtable">Conference roundtable</option>
+        </select>
+
+        <select id="filterSpeaker" class="form-select form-select-sm" style="width: 280px;">
+            <option value="All">All speakers</option>
+            <!-- Speakers will be added automatically by JavaScript -->
+        </select>
+    </div>
+</div>
+                   
             </div>
         </div>
     </section>
@@ -92,80 +119,161 @@
             <!==== scripts for leaflet.js and PapaParse to generate leaflet.js map from csv ====!>
         
 <script>
-        const map = L.map('map').setView([52.0, 10], 4);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+    const map = L.map('map').setView([52.0, 10], 4);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
-        const markers = L.markerClusterGroup({
-            showCoverageOnHover: false,
-            maxClusterRadius: 40,           
-            disableClusteringAtZoom: 9,     
-            spiderfyOnMaxZoom: true,
-            zoomToBoundsOnClick: true
-            });
-        const eventsData = [];
+    const markers = L.markerClusterGroup({
+        showCoverageOnHover: false,
+        maxClusterRadius: 40,
+        disableClusteringAtZoom: 9,
+        spiderfyOnMaxZoom: true,
+        zoomToBoundsOnClick: true
+    });
 
-        Papa.parse('assets/data/presentations.csv', {
-            download: true,
-            header: true,
-            complete: function(results) {
-                results.data.forEach((row, index) => {
-                    if (!row.Latitude || !row.Longitude) return;
+    const eventsData = [];   
 
-                    const lat = parseFloat(row.Latitude);
-                    const lng = parseFloat(row.Longitude);
-                    const color = getMarkerColor(row.Type);
+    Papa.parse('assets/data/presentations.csv', {
+        download: true,
+        header: true,
+        complete: function(results) {
+            results.data.forEach((row, index) => {
+                if (!row.Latitude || !row.Longitude) return;
 
-                    const marker = L.circleMarker([lat, lng], {
-                        radius: 9,
-                        fillColor: color,
-                        color: "#fff",
-                        weight: 2.5,
-                        fillOpacity: 0.9
-                    }).bindPopup(`
-                        <strong>${row['Paper title'] || row['Event title']}</strong><br>
-                        ${row.Speaker}<br>
-                        <em>${row.Type}</em><br>
-                        <small>${row['Event title']} • ${row.Date}</small>
-                    `);
+                const lat = parseFloat(row.Latitude);
+                const lng = parseFloat(row.Longitude);
+                const type = (row.Type || '').trim();
+                const color = getMarkerColor(type);
 
-                    markers.addLayer(marker);
-                    eventsData.push({row, marker, index});
+                // Handle multiple speakers (separated by & or "and")
+                const speakers = (row.Speaker || '')
+                    .split(/\s*&\s*|\s+and\s+/i)
+                    .map(s => s.trim())
+                    .filter(Boolean);
+
+                const marker = L.circleMarker([lat, lng], {
+                    radius: 9,
+                    fillColor: color,
+                    color: "#fff",
+                    weight: 2.5,
+                    fillOpacity: 0.9
+                }).bindPopup(`
+                    <strong>${row['Paper title'] || row['Event title']}</strong><br>
+                    ${row.Speaker}<br>
+                    <em>${row.Type}</em><br>
+                    <small>${row['Event title']} • ${row.Date}</small>
+                `);
+
+                markers.addLayer(marker);
+
+                eventsData.push({
+                    row,
+                    marker,
+                    originalIndex: index,
+                    type: type,
+                    speakers: speakers
                 });
+            });
 
-                map.addLayer(markers);
-                renderEventList();
+            map.addLayer(markers);
+
+            populateSpeakerFilter();
+            applyFilters();         
+        }
+    });
+
+    function getMarkerColor(type) {
+        switch(type) {
+            case 'Keynote': return '#ffd700';
+            case 'Invited lecture': return '#00b4d8';
+            case 'Conference presentation': return '#28a745';
+            case 'Conference roundtable': return '#ff7f0e';
+            default: return '#6c757d';
+        }
+    }
+
+    function populateSpeakerFilter() {
+        const speakerSet = new Set();
+        eventsData.forEach(item => {
+            item.speakers.forEach(s => speakerSet.add(s));
+        });
+
+        const select = document.getElementById('filterSpeaker');
+        // Keep the "All speakers" option, then add the rest
+        Array.from(speakerSet).sort().forEach(speaker => {
+            const option = document.createElement('option');
+            option.value = speaker;
+            option.textContent = speaker;
+            select.appendChild(option);
+        });
+    }
+
+    function applyFilters() {
+        const typeFilter = document.getElementById('filterType').value;
+        const speakerFilter = document.getElementById('filterSpeaker').value;
+
+        markers.clearLayers();
+
+        const filtered = eventsData.filter(item => {
+            const typeMatch = (typeFilter === 'All') || (item.type === typeFilter);
+            const speakerMatch = (speakerFilter === 'All') || (item.speakers.includes(speakerFilter));
+            return typeMatch && speakerMatch;
+        });
+
+        filtered.forEach(item => markers.addLayer(item.marker));
+
+        updateLegendCounts(filtered);
+        renderEventList(filtered);
+    }
+
+    function updateLegendCounts(filteredItems) {
+        const counts = {
+            'Keynote': 0,
+            'Invited lecture': 0,
+            'Conference presentation': 0,
+            'Conference roundtable': 0
+        };
+
+        filteredItems.forEach(item => {
+            if (counts.hasOwnProperty(item.type)) {
+                counts[item.type]++;
             }
         });
 
-        function getMarkerColor(type) {
-            switch(type?.trim()) {
-                case 'Keynote': return '#ffd700';
-                case 'Invited lecture': return '#00b4d8';
-                case 'Conference presentation': return '#28a745';
-                case 'Conference roundtable': return '#ff7f0e';
-                default: return '#6c757d';
-            }
+        document.getElementById('count-keynote').textContent = counts['Keynote'];
+        document.getElementById('count-invited').textContent = counts['Invited lecture'];
+        document.getElementById('count-conference').textContent = counts['Conference presentation'];
+        document.getElementById('count-roundtable').textContent = counts['Conference roundtable'];
+    }
+
+    function renderEventList(filteredItems = eventsData) {
+        const container = document.getElementById('eventList');
+        const items = [...filteredItems].reverse(); // newest first
+
+        if (items.length === 0) {
+            container.innerHTML = '<div class="text-muted p-2">No presentations match the selected filters.</div>';
+            return;
         }
 
-        function renderEventList() {
-            const container = document.getElementById('eventList');
-            container.innerHTML = [...eventsData].reverse().map(item => `
-                <div class="event-item rounded mb-2" onclick="zoomToEvent(${item.index})">
-                    <div class="event-title">${item.row['Paper title'] || item.row['Event title']}</div>
-                    <small class="text-info">${item.row.Speaker} • ${item.row.Date} • ${item.row.Type}</small><br>
-                    <small><em>${item.row['Event title']}</em></small>
-                </div>
-            `).join('');
-        }
+        container.innerHTML = items.map(item => `
+            <div class="event-item rounded mb-2" onclick="zoomToEvent(${item.originalIndex})">
+                <div class="event-title">${item.row['Paper title'] || item.row['Event title']}</div>
+                <small class="text-info">${item.row.Speaker} • ${item.row.Date} • ${item.row.Type}</small><br>
+                <small><em>${item.row['Event title']}</em></small>
+            </div>
+        `).join('');
+    }
 
-        window.zoomToEvent = function(index) {
-            const item = eventsData[index];
-            if (item && item.marker) {
-                map.flyTo(item.marker.getLatLng(), 8);
-                item.marker.openPopup();
-            }
-        };
-    </script>
+    window.zoomToEvent = function(index) {
+        const item = eventsData.find(it => it.originalIndex === index);
+        if (item && item.marker) {
+            map.flyTo(item.marker.getLatLng(), 8);
+            item.marker.openPopup();
+        }
+    };
+
+    document.getElementById('filterType').addEventListener('change', applyFilters);
+    document.getElementById('filterSpeaker').addEventListener('change', applyFilters);
+</script>
         
 </body>
 </html>
