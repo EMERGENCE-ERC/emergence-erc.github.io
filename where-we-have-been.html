@@ -52,57 +52,62 @@
     </section>
 
 
-    <section class="py-3">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8">
-                    <div id="map"></div>
-                    
-                    <!-- Legend under the map -->
-<div class="text-center mt-3">
-    <div class="legend d-inline-flex flex-wrap justify-content-center gap-4 bg-dark p-3 rounded">
-        <div class="legend-item text-white">
-            <span class="legend-dot" style="background:#ffd700"></span> 
-            Keynote 
-            <span class="badge bg-light text-dark ms-2" id="count-keynote">0</span>
-        </div>
-        <div class="legend-item text-white">
-            <span class="legend-dot" style="background:#00b4d8"></span> 
-            Invited Lecture 
-            <span class="badge bg-light text-dark ms-2" id="count-invited">0</span>
-        </div>
-        <div class="legend-item text-white">
-            <span class="legend-dot" style="background:#28a745"></span> 
-            Conference Presentation 
-            <span class="badge bg-light text-dark ms-2" id="count-conference">0</span>
-        </div>
-        <div class="legend-item text-white">
-            <span class="legend-dot" style="background:#ff7f0e"></span> 
-            Conference Roundtable 
-            <span class="badge bg-light text-dark ms-2" id="count-roundtable">0</span>
-        </div>
-    </div>
+<section class="py-3">
+    <div class="container">
+        <div class="row">
+            <!-- LEFT COLUMN: Map + Legend + Filters -->
+            <div class="col-lg-8">
+                <div id="map"></div>
+                
+                <!-- Legend under the map -->
+                <div class="text-center mt-3">
+                    <div class="legend d-inline-flex flex-wrap justify-content-center gap-4 bg-dark p-3 rounded">
+                        <div class="legend-item text-white">
+                            <span class="legend-dot" style="background:#ffd700"></span> 
+                            Keynote 
+                            <span class="badge bg-light text-dark ms-2" id="count-keynote">0</span>
+                        </div>
+                        <div class="legend-item text-white">
+                            <span class="legend-dot" style="background:#00b4d8"></span> 
+                            Invited Lecture 
+                            <span class="badge bg-light text-dark ms-2" id="count-invited">0</span>
+                        </div>
+                        <div class="legend-item text-white">
+                            <span class="legend-dot" style="background:#28a745"></span> 
+                            Conference Presentation 
+                            <span class="badge bg-light text-dark ms-2" id="count-conference">0</span>
+                        </div>
+                        <div class="legend-item text-white">
+                            <span class="legend-dot" style="background:#ff7f0e"></span> 
+                            Conference Roundtable 
+                            <span class="badge bg-light text-dark ms-2" id="count-roundtable">0</span>
+                        </div>
+                    </div>
 
-    <!-- Filters -->
-    <div class="d-flex justify-content-center gap-3 mt-3 flex-wrap">
-        <select id="filterType" class="form-select form-select-sm" style="width: 220px;">
-            <option value="All">All types</option>
-            <option value="Keynote">Keynote</option>
-            <option value="Invited lecture">Invited lecture</option>
-            <option value="Conference presentation">Conference presentation</option>
-            <option value="Conference roundtable">Conference roundtable</option>
-        </select>
+                    <!-- Filters -->
+                    <div class="d-flex justify-content-center gap-3 mt-3 flex-wrap">
+                        <select id="filterType" class="form-select form-select-sm" style="width: 220px;">
+                            <option value="All">All types</option>
+                            <option value="Keynote">Keynote</option>
+                            <option value="Invited lecture">Invited lecture</option>
+                            <option value="Conference presentation">Conference presentation</option>
+                            <option value="Conference roundtable">Conference roundtable</option>
+                        </select>
 
-        <select id="filterSpeaker" class="form-select form-select-sm" style="width: 280px;">
-            <option value="All">All speakers</option>
-            <!-- Speakers will be added automatically by JavaScript -->
-        </select>
-    </div>
-</div>
-                   
+                        <select id="filterSpeaker" class="form-select form-select-sm" style="width: 280px;">
+                            <option value="All">All speakers</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <h5 class="mb-3" id="presentations-title">All Presentations (0)</h5>
+                <div class="event-list bg-dark p-3 rounded" id="eventList"></div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
 <!-- Footer Placeholder -->
 <div id="footer-placeholder"></div>
@@ -245,23 +250,32 @@
         document.getElementById('count-roundtable').textContent = counts['Conference roundtable'];
     }
 
-    function renderEventList(filteredItems = eventsData) {
-        const container = document.getElementById('eventList');
-        const items = [...filteredItems].reverse(); // newest first
+function renderEventList(filteredItems = eventsData) {
+    const container = document.getElementById('eventList');
+    const title = document.getElementById('presentations-title');
+    const count = filteredItems.length;
 
-        if (items.length === 0) {
-            container.innerHTML = '<div class="text-muted p-2">No presentations match the selected filters.</div>';
-            return;
-        }
-
-        container.innerHTML = items.map(item => `
-            <div class="event-item rounded mb-2" onclick="zoomToEvent(${item.originalIndex})">
-                <div class="event-title">${item.row['Paper title'] || item.row['Event title']}</div>
-                <small class="text-info">${item.row.Speaker} • ${item.row.Date} • ${item.row.Type}</small><br>
-                <small><em>${item.row['Event title']}</em></small>
-            </div>
-        `).join('');
+    if (count === eventsData.length) {
+        title.textContent = `All Presentations (${count})`;
+    } else {
+        title.textContent = `Filtered Presentations (${count})`;
     }
+
+    const items = [...filteredItems].reverse(); // newest first
+
+    if (items.length === 0) {
+        container.innerHTML = '<div class="text-muted p-2">No presentations match the selected filters.</div>';
+        return;
+    }
+
+    container.innerHTML = items.map(item => `
+        <div class="event-item rounded mb-2" onclick="zoomToEvent(${item.originalIndex})">
+            <div class="event-title">${item.row['Paper title'] || item.row['Event title']}</div>
+            <small class="text-info">${item.row.Speaker} • ${item.row.Date} • ${item.row.Type}</small><br>
+            <small><em>${item.row['Event title']}</em></small>
+        </div>
+    `).join('');
+}
 
     window.zoomToEvent = function(index) {
         const item = eventsData.find(it => it.originalIndex === index);
