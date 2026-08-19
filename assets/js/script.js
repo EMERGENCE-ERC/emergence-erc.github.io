@@ -1,7 +1,7 @@
 /* === NAVBAR INSERTION === */
 const navbarElement = document.getElementById('navbar-placeholder');
 if (navbarElement) {
-  fetch('assets/sections/navbar.html')
+  fetch('/assets/sections/navbar.html')
     .then(response => response.text())
     .then(data => {
       navbarElement.innerHTML = data;
@@ -15,7 +15,7 @@ if (navbarElement) {
 
 const footerElement = document.getElementById('footer-placeholder');
 if (footerElement) {
-  fetch('assets/sections/footer.html')
+  fetch('/assets/sections/footer.html')
     .then(response => response.text())
     .then(data => {
         // Add footer
