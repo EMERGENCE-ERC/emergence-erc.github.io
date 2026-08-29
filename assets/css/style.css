@@ -8,6 +8,11 @@ body {
     padding-top: 80px;
 }
 
+body.blog {
+     background-color: #D0D0D0;
+     color: #1C1C1C;
+}
+
 h1, h2, h3, h4, h5, h6 {
     font-family: "Bookman Old Style", Georgia, "Times New Roman", serif;
     font-weight: 700;
@@ -88,6 +93,10 @@ figcaption {
   caption-side: bottom;
 }
 
+body.blog caption, figcaption {
+   color: #2A2A2A;
+}  
+
 /* ====================== HERO styles ====================== */
 
 .hero {
@@ -153,6 +162,10 @@ figcaption {
     color: #bbb9b9;
     font-family: sans-serif;   
     pointer-events: none;
+}
+
+.hero-blog h1, h2, h3, h4, h5, h6 {
+    color: #ffffff;
 }
 
 /* === HERO for individual pages ===*/
