@@ -93,6 +93,36 @@ mark {
     0 2px 4px rgba(0, 0, 0, 0.6);    
 }
 
+/* === HERO for blog pages ===*/
+
+.hero-blog {
+    position: relative;
+    background: linear-gradient(
+                                    rgba(0,0,0,0.65) 0%,
+                                    rgba(0,0,0,0.2) 30%,
+                                    rgba(0,0,0,0.01) 50%,
+                                    rgba(0,0,0,0.1) 75%,
+                                    rgba(0,0,0,0.6) 100%
+                                ),
+                url('../images/heroes/hero.OEB1.jpg') center/cover no-repeat;
+    padding: 45px 0 30px;
+    min-height: 35vh;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    }     
+
+.hero-blog::after {
+    content: "Image: Caspar David Friedrich, 'Der Morgen' (1821-1822; Public Domain)";
+    position: absolute;
+    bottom: 5px;               
+    right: 10px;               
+    font-size: 0.5rem;       
+    color: #bbb9b9;
+    font-family: sans-serif;   
+    pointer-events: none;
+}
+
 /* === HERO for individual pages ===*/
 
 .hero-team {
@@ -104,12 +134,12 @@ mark {
     content: "Image: Caspar David Friedrich, 'Das Riesengebirge' (1830-1835; Public Domain)";
 }
 
-.hero-blog {
+.hero-blog2 {
     background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), 
          url('../images/heroes/hero.blog.jpg');
 }
 
-.hero-blog::after {
+.hero-blog2::after {
     content: "Image: Caspar David Friedrich, 'Böhmische Landschaft mit dem Milleschauer' (1808; Public Domain)";
 }
 
