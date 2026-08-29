@@ -51,6 +51,11 @@ figcaption {
   caption-side: bottom;
 }
 
+mark {
+    background-color: #F8F8F8;
+    color: #000;
+}
+
 /* ====================== HERO styles ====================== */
 
 .hero {
