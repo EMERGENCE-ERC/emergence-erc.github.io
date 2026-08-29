@@ -43,7 +43,7 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container text-center">
-            <h1 class="display-3 fw-bold mb-3">EMERGENCE and the Kalliope Verbundkatalog</h1>
+            <h1 class="display-3 fw-bold mb-3">EMERGENCE and the Kalliope Union Catalog</h1>
   
             <p class="lead fs-3 mb-5"><br>A Digital Endeavour Involving Databases, Lookups, and Automated Retrieval Using Powershell Scripts</p>
         </div>
@@ -66,7 +66,9 @@ incorporate already curated information on them into the project instead
 of having to start from scratch? In this blog post, I will offer a
 glimpse into some of the digital aspects of the EMERGENCE project and
 its utilization of the Kalliope Union Catalog.</p>
-<p><strong>EMERGENCE and the Kalliope Union Catalog</strong></p>
+            
+<h4>EMERGENCE and the Kalliope Union Catalog</h4>
+            
 <p>As part of the EMERGENCE project, a database is used to keep track of
 – and analyse! – biographical information on 19th-century scholars,
 their publications, and their correspondence concerning Old English.
@@ -91,8 +93,10 @@ how to search for the letters within Kalliope that are relevant to our
 project and (2) how to acquire relevant metadata from Kalliope in a
 digital format that will eventually allow us to easily import this
 information into our own database?</p>
-<p><strong>How does one search within the Kalliope Union
-Catalog?</strong></p>
+            
+<h4>How does one search within the Kalliope Union
+Catalog?</h4>
+            
 <p>Searching the Kalliope Union Catalog is relatively easy, thanks to
 the rich metadata it contains and the website through which it can be
 accessed.<a href="#fn1" class="footnote-ref" id="fnref1"
@@ -106,7 +110,7 @@ date range to the period of our interest within the project (i.e., the
 19th-century).</p>
 <figure>
 <img src="media/image1.png" style="width:6.26597in;height:4.55764in" />
-<figcaption><p>. Website search results in Kalliope Union Catalog for
+<figcaption><p>Figure 1. Website search results in Kalliope Union Catalog for
 letters sent by Eduard Sievers between 1800 and 2000 and received by
 Friedrich Zarncke.</p></figcaption>
 </figure>
@@ -128,15 +132,17 @@ all relevant information from Kalliope within a matter of minutes, if
 not seconds:</p>
 <figure>
 <img src="media/image2.png" style="width:6.26042in;height:4.51597in" />
-<figcaption><p>. CSV file with metadata obtained from an SRU search in
+<figcaption><p>Figure 2. CSV file with metadata obtained from an SRU search in
 Kalliope Union Catalog, created through automated fetching of the
 metadata and subsequent transformation of the digital format from XML to
-CSV..</p></figcaption>
+CSV.</p></figcaption>
 </figure>
 <p>The remainder of this blog post discusses how I was able to do
 so!</p>
-<p><strong>Towards an automated way to obtaining machine-readable
-metadata from Kalliope</strong></p>
+            
+<h4>Towards an automated way to obtaining machine-readable
+metadata from Kalliope</h4>
+            
 <p>Thankfully, the brilliant team at the Kalliope Union Catalog have
 made their catalogue available also via a so-called Search/Retrieval via
 URL, or SRU.<a href="#fn2" class="footnote-ref" id="fnref2"
@@ -154,7 +160,7 @@ metadata on a subset of letters into the OE-BaRD and for which I have
 created a set of scripts to facilitate the work.</p>
 <figure>
 <img src="media/image3.png" style="width:6.26042in;height:4.53681in" />
-<figcaption><p>. SRU search results in Kalliope Union Catalog for
+<figcaption><p>Figure 3. SRU search results in Kalliope Union Catalog for
 letters sent by Eduard Sievers between 1800 and 2000 and received by
 Friedrich Zarncke.</p></figcaption>
 </figure>
@@ -186,7 +192,10 @@ utilizing all other scripts in the correct order, and output the results
 in the CSV file format, which is tabular in nature and can be read in
 software applications such as LibreOffice and MS Excel.<a href="#fn5"
 class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></p>
-<p><strong>Scripting digital automation in three easy steps</strong>Now,
+            
+<h4>Scripting digital automation in three easy steps</h4>
+
+<p>Now,
 let us delve into the magnificent world of digital automation and learn
 more about what the scripts do, why they are needed, and how they go
 about it!</p>
@@ -204,7 +213,7 @@ location from the Kalliope website to the SRU access location, and (2)
 rewrite search filters from the website to how they are formulated for
 SRU.</p>
 <table>
-<caption><p>. An example of a website search address translated into a
+<caption><p>Table 1. An example of a website search address translated into a
 SRU address, searching for items written by Eduard Sievers between 1800
 and 2000 and received by Friedrich Zarncke. The part before the ‘?’ in
 the address is considered the access location that differs depending on
@@ -216,14 +225,12 @@ lookups.</p></caption>
 <col style="width: 14%" />
 <col style="width: 85%" />
 </colgroup>
-<thead>
-<tr>
-<th>Website</th>
-<th><a
-href="https://kalliope-verbund.info/query?q=sievers&amp;htmlFull=false&amp;fq=%2Bgi.unitdate_end%3A%5B1800%20TO%209999%5D%20%2Bgi.unitdate_start%3A%5B-9999%20TO%202000%5D&amp;fq=ead.creator.index%3A%28%22Sievers%2C%20Eduard%20%281850-1932%29%22%29&amp;lang=de&amp;fq=ead.addressee.index%3A%28%22Zarncke%2C%20Friedrich%20%281825-1891%29%22%29&amp;lastparam=true">https://kalliope-verbund.info/query?q=sievers&amp;htmlFull=false&amp;fq=%2Bgi.unitdate_end%3A%5B1800%20TO%209999%5D%20%2Bgi.unitdate_start%3A%5B-9999%20TO%202000%5D&amp;fq=ead.creator.index%3A%28%22Sievers%2C%20Eduard%20%281850-1932%29%22%29&amp;lang=de&amp;fq=ead.addressee.index%3A%28%22Zarncke%2C%20Friedrich%20%281825-1891%29%22%29&amp;lastparam=true</a></th>
-</tr>
-</thead>
 <tbody>
+<tr>
+<td>Website</td>
+<td><a
+href="https://kalliope-verbund.info/query?q=sievers&amp;htmlFull=false&amp;fq=%2Bgi.unitdate_end%3A%5B1800%20TO%209999%5D%20%2Bgi.unitdate_start%3A%5B-9999%20TO%202000%5D&amp;fq=ead.creator.index%3A%28%22Sievers%2C%20Eduard%20%281850-1932%29%22%29&amp;lang=de&amp;fq=ead.addressee.index%3A%28%22Zarncke%2C%20Friedrich%20%281825-1891%29%22%29&amp;lastparam=true">https://kalliope-verbund.info/query?q=sievers&amp;htmlFull=false&amp;fq=%2Bgi.unitdate_end%3A%5B1800%20TO%209999%5D%20%2Bgi.unitdate_start%3A%5B-9999%20TO%202000%5D&amp;fq=ead.creator.index%3A%28%22Sievers%2C%20Eduard%20%281850-1932%29%22%29&amp;lang=de&amp;fq=ead.addressee.index%3A%28%22Zarncke%2C%20Friedrich%20%281825-1891%29%22%29&amp;lastparam=true</a></td>
+</tr>        
 <tr>
 <td>SRU</td>
 <td><a
@@ -320,7 +327,9 @@ scripts. Be creative, dare to go digital, and in case of questions or
 doubt… reach out! People behind publicly available resources tend to
 love nothing more than to see them used and are happy to answer
 questions. I know I am.</p>
-<p><strong>Want to learn more?</strong></p>
+            
+<h5>Want to learn more?</h5>
+            
 <p>Feel free to look at, download, and play with <a
 href="https://github.com/EMERGENCE-ERC/kalliope2csv">our kalliope2csv
 scripts on GitHub</a>.</p>
@@ -334,7 +343,9 @@ explanation of query strings for downloading multiple records from
 internet databases</a>, and <a
 href="https://programminghistorian.org/en/lessons/transforming-xml-with-xsl">a
 tutorial to transform XML data using XSLT</a>.</p>
-<p><strong>Acknowledgements</strong></p>
+            
+<h5>Acknowledgements</h5>
+            
 <p>This author is grateful to the team behind Kalliope Union Catalog,
 who have made available a superb resource with the metadata within under
 open licence, and were kind enough to answer a number of questions. I am
@@ -342,11 +353,12 @@ also thankful for being part of the EMERGENCE team, who are enthusiastic
 about delving into historical material and not shying away from any of
 the digital aspects together with me – it is a pleasure working with
 you.</p>
-<p><strong>Funding statement</strong></p>
+            
+<h5>Funding statement</h5>
 <p>This blog post is part of a project that has received funding from
 the European Research Council (ERC) under the European Union’s Horizon
 Europe research and innovation program (<a
-href="https://thijsporck.com/emergence/">EMERGENCE</a>, Grant agreement
+href="https://emergence.leiden.edu">EMERGENCE</a>, Grant agreement
 No.101115867, <a
 href="https://doi.org/10.3030/101115867">https://doi.org/10.3030/101115867</a> ).
 Funded by the European Union. Views and opinions expressed are however
@@ -383,8 +395,6 @@ longer.<a href="#fnref5" class="footnote-back"
 role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
-
-
         </div>
     </section>
 
