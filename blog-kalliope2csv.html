@@ -291,15 +291,23 @@ is a simpler one than XML, not sporting a hierarchy of information
 elements, but acting as a tabular format in which each line represents a
 table row with commas separating the columns. The XSLT used in the
 EMERGENCE project creates a CSV row for each ‘mods’ element found in the
-XML hierarchy (which we select with the following path, in which forward
-slashes denote the next level in the hierarchy:
-“srw:searchRetrieveResponse/srw:records/srw:record/srw:recordData/mods:mods”).
-For each CSV row, the individual columns are then populated by the XSLT.
+XML hierarchy, which we select with the following path, in which forward
+slashes denote the next level in the hierarchy:</p>
+<table>
+    <tr>
+        <td>“srw:searchRetrieveResponse/srw:records/srw:record/srw:recordData/mods:mods”</td>
+    </tr>
+</table>
+<p>For each CSV row, the individual columns are then populated by the XSLT.
 The “SENDER” column, for instance, is filled with XML data on names
-associated with a creator role (thus:
-“mods:name[mods:role/mods:roleTerm='cre']/mods:namePart”, where ‘cre’
-stands for creator), which is the way Kalliope describes the writers of
-letters. After the transformation from XML to CSV has been executed for
+associated with a creator role, like this (where 'cre' stands for creator, 
+which is the way Kalliope describes the writers of letters):</p>
+<table>
+    <tr>
+        <td>“mods:name[mods:role/mods:roleTerm='cre']/mods:namePart”</td>
+    </tr>
+</table>
+<p>After the transformation from XML to CSV has been executed for
 all SRU pages that have been fetched, the
 <mark>merge-csvs-dir.ps1</mark> script then allows one to merge all CSVs
 in a directory into a single CSV file, which comes down to simply adding
@@ -356,7 +364,7 @@ the digital aspects together with me – it is a pleasure working with
 you.</p>
             
 <h5>Funding statement</h5>
-<p>This blog post is part of a project that has received funding from
+<p><i>This blog post is part of a project that has received funding from
 the European Research Council (ERC) under the European Union’s Horizon
 Europe research and innovation program (<a
 href="https://emergence.leiden.edu">EMERGENCE</a>, Grant agreement
@@ -366,7 +374,7 @@ Funded by the European Union. Views and opinions expressed are however
 those of the author(s) only and do not necessarily reflect those of the
 European Union or the European Research Council Executive Agency.
 Neither the European Union nor the granting authority can be held
-responsible for them.</p>
+responsible for them.</i></p>
 <section id="footnotes" class="footnotes footnotes-end-of-document"
 role="doc-endnotes">
 <hr />
