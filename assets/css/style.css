@@ -37,6 +37,11 @@ table {
   table-layout: fixed;
 }
 
+td {
+  overflow-wrap: anywhere;
+  word-break: break-all;
+}
+
 td a {
   overflow-wrap: anywhere;
   word-break: break-all;
