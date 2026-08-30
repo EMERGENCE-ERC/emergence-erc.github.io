@@ -50,6 +50,12 @@
   </url>
 
   <url>
+    <loc>https://emergence.leiden.edu/blog-kalliope2csv</loc>
+    <lastmod>2026-08-30</lastmod>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://emergence.leiden.edu/updates</loc>
     <lastmod>2026-06-28</lastmod>
     <priority>0.7</priority>
