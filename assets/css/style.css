@@ -8,18 +8,9 @@ body {
     padding-top: 80px;
 }
 
-body.blog {
-     background-color: #D0D0D0;
-     color: #1C1C1C;
-}
-
 h1, h2, h3, h4, h5, h6 {
     font-family: "Bookman Old Style", Georgia, "Times New Roman", serif;
     font-weight: 700;
-}
-
-body.blog h1, h2, h3, h4, h5, h6 {
-     color: #1C1C1C;
 }
 
 ul {
@@ -32,14 +23,6 @@ a {
 
 a:hover {
     color: #FFD700;
-}
-
-body.blog a {
-    color: #005566;
-}
-
-body.blog a:hover {
-    color: #665600;
 }
 
 mark {
@@ -92,8 +75,7 @@ figure img {
   display: block;
 }
 
-caption,
-figcaption {
+caption, figcaption {
   font-size: 0.8rem;         
   font-style: italic;         
   color: #F8F8F8;                
@@ -105,7 +87,26 @@ figcaption {
   caption-side: bottom;
 }
 
-body.blog caption, figcaption {
+/* ====================== Blog class styles for better legibility for long-read blogs =============== */
+
+body.blog {
+     background-color: #D0D0D0;
+     color: #1C1C1C;
+}
+
+body.blog h1, body.blog h2, body.blog h3, body.blog h4, body.blog h5, body.blog h6 {
+     color: #1C1C1C;
+}
+
+body.blog a {
+    color: #005566;
+}
+
+body.blog a:hover {
+    color: #665600;
+}
+
+body.blog caption, body.blog figcaption {
    color: #2A2A2A;
 }  
 
@@ -141,7 +142,7 @@ body.blog caption, figcaption {
 
 .hero h1,
 .hero h2,
-.hero p {
+.hero p { text-shadow:
     0 3px 12px rgba(0, 0, 0, 0.85),   
     0 2px 4px rgba(0, 0, 0, 0.6);    
 }
@@ -176,7 +177,7 @@ body.blog caption, figcaption {
     pointer-events: none;
 }
 
-.hero-blog h1, h2, h3, h4, h5, h6 {
+.hero-blog h1, .hero-blog h2, .hero-blog h3, .hero-blog h4, .hero-blog h5, .hero-blog h6 {
     color: #ffffff;
 }
 
