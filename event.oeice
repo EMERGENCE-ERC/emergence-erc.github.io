@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- Basic Favicon -->
+    <link rel="icon" href="assets/images/favicon.png" type="image/png">
+
+    <!-- For better compatibility -->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
+        
+        <!-- Open Graph / Social Media Preview -->
+    <meta property="og:title" content="EMERGENCE - ERC Project | Old English in Continental Europe">
+    <meta property="og:description" content="An international conference in Leiden (26-27 January, 2027), co-organized with OE-CONNECT">
+    <meta property="og:image" content="https://emergence-erc.github.io/assets/images/logo.oeice.jpg">
+    <meta property="og:url" content="https://emergence.leiden.edu">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="EMERGENCE Project">
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="EMERGENCE - ERC Project | Old English in Continental Europe">
+    <meta name="twitter:description" content="An international conference in Leiden (26-27 January, 2027), co-organized with OE-CONNECT">
+    <meta name="twitter:image" content="https://emergence-erc.github.io/assets/images/logo.oeice.jpg">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMERGENCE | Old English in Continental Europe</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+     <!-- Navbar will be loaded here -->
+    <div id="navbar-placeholder"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container text-center">
+            <h1 class="display-3 fw-bold mb-3">Old English in Continental Europe</h1>
+                 <img src="assets/images/logo.oeice.jpg" 
+                 alt="Old English in Continental Europe" class="main-logo">
+          <p class="lead fs-3 mb-5"><br>A hybrid conference, co-organized by OE-CONNECT (Una Europa; Jagiellonian University Kraków – Leiden University – University of Zurich) and EMERGENCE (ERC Horizon Europe; Leiden University).</p></div>
+    </section>
+
+    <!-- Placeholder Content -->
+    <section class="py-3">
+        <div class="container text-center">
+             <p class="fs-5">
+We warmly invite researchers and teachers working on the linguistic and cultural heritage of early medieval 
+England (c. 500–1100 CE) to attend this hybrid conference on Old English in Continental Europe, to take place 
+at Leiden University (& online, via Zoom) from 26-27 January 2027. The event seeks to bring together scholars to exchange research, 
+teaching practices, and resources, as well as to consider the particular opportunities and challenges of studying 
+and teaching Old English beyond the Anglophone world.<br><br>
+Our preliminary programme features 21 speakers from 8 different countries:</p>        
+
+                <div style="background-color: #A0522D; color: black; padding: 35px; border-radius: 5px;" class="fs-4">
+    <a href="assets/files/OEiCE.PrelProgramme.pdf" target="_blank"><b>PRELIMINARY PROGRAMME (PDF)</b></a>
+                </div>
+        <p class="mt-3 fs-5"><br> Attendance is free (including lunch, coffee/tea and closing drinks), but registration is required. If you are interested in attending conference, please let us know by filling out the registration form below:
+        </p>
+        </div>
+    </section>
+
+        <!-- Contact form -->
+    <section class="py-3">
+        <div class="container">
+            <h2 class="text-center mb-5">Registration form (or use <a href="https://leidenuniv.eu.qualtrics.com/jfe/form/SV_d5zGPKeWI9L7mw6" target="_blank">this link</a>)</h2>
+            <div class="row justify-content-center">    
+                <div class="qualtrics-container">
+                  <iframe 
+                    id="qualtrics-iframe"
+                    src="https://leidenuniv.eu.qualtrics.com/jfe/form/SV_d5zGPKeWI9L7mw6"
+                    width="100%" 
+                    height="1500" 
+                    frameborder="0" 
+                    marginheight="0" 
+                    marginwidth="0"
+                    allowfullscreen>
+                  </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Footer Placeholder -->
+<div id="footer-placeholder"></div>
+
+
+<!==== SCRIPT SOURCES ====!>    
+<script src="assets/js/script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
